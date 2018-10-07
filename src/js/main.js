@@ -70,6 +70,24 @@ $(document).ready(function() {
         }
       }
     });
+
+    var mySwiper2 = new Swiper("[js-slider-services]", {
+      // Optional parameters
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+      },
+      slidesPerView: 1,
+      paginationClickable: true,
+      spaceBetween: 30,
+      loop: true,
+      mousewheelControl: true,
+      effect: "fade",
+      fadeEffect: {
+        crossFade: true
+      },
+      speed: 600
+    });
   }
 
   //////////

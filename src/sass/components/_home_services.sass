@@ -1,0 +1,137 @@
+.services
+  padding: 110px 0 110px
+  &__points
+    margin: 0 auto
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+    margin-top: 60px
+  &__points-link
+    font-size: 24px
+    font-weight: 300
+    transition: all $transitionSpeed $ease
+    color: $fontColor
+    display: inline-block
+    margin: 0 30px
+    &.is-active
+      font-weight: 400
+      color: $hoverColor
+  &__slider
+    max-width: 95%
+    margin: 100px auto 0
+  .swiper-slide
+    display: flex
+    align-items: center
+    justify-content: space-between
+  &__info
+    width: 48%
+    padding-right: 70px
+  &__image
+    max-width: 43%
+    img
+      width: 100%
+      height: auto
+  &__title
+    font-size: 48px
+    color: $fontColor
+    line-height: 1.2
+    font-family: $prata
+    font-weight: 300
+  &__sub-title
+    font-size: 24px
+    color: $fontColor
+    margin-top: 35px
+    font-weight: 300
+  .swiper-pagination
+    position: absolute
+    left: auto
+    right: 0
+    bottom: auto
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    justify-content: center
+    width: 50px
+    top: 50%
+    transform: translateY(-50%)
+    z-index: 100
+  .swiper-pagination-bullet
+    width: 20px
+    height: 5px
+    background: #bdbdbd
+    opacity: 1
+    border-radius: 0
+    margin: 15px 0 !important
+    display: inline-block
+    transition: all $transitionSpeed $ease
+  .swiper-pagination-bullet-active
+    width: 50px
+    background: $hoverColor
+
++r($hd)
+  .services
+    padding: 80px 0 80px
+    &__points-link
+      font-size: 20px
+      margin: 0 15px
+    &__slider
+      max-width: 100%
+      margin-top: 80px
+    &__title
+      font-size: 36px
+    &__sub-title
+      font-size: 20px
+      margin-top: 35px
+
++r($desktop)
+  .services
+    padding: 60px 0 0
+    &__slider
+      margin-top: 60px
+    &__title
+      font-size: 30px
+    &__sub-title
+      font-size: 18px
+    &__info
+      width: 57%
+      padding-right: 60px
+    &__image
+      max-width: 38%
+
++r($tablet)
+  .services
+    padding: 30px 0 0
+    &__scroll
+      overflow: hidden
+      margin-bottom: -30px
+    &__points
+      // width: auto
+      justify-content: flex-start
+      overflow-x: scroll
+      padding-bottom: 30px
+      margin-bottom: -30px
+      margin-top: 20px
+    &__slider
+      margin-top: 40px
+    &__points-link
+      font-size: 16px
+      margin: 0 20px 0 0
+    .swiper-slide
+      flex-wrap: wrap
+    &__image
+      width: 100%
+      max-width: 100%
+      img
+        max-width: 200px
+        height: auto
+    &__info
+      width: 100%
+      max-width: 100%
+      margin-top: 15px
+    &__title
+      font-size: 24px
+      margin-top: 15px
+    &__sub-title
+      font-size: 14px
+      margin-top: 15px
