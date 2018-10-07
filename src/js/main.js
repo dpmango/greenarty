@@ -48,11 +48,15 @@ $(document).ready(function() {
       direction: "horizontal",
       slidesPerView: 3,
       spaceBetween: 30,
-      loop: true,
+      loop: false,
       // pagination: ".swiper-pagination",
       // paginationClickable: true,
       parallax: true,
       effect: "slide",
+      scrollbar: {
+        el: ".swiper-scrollbar",
+        draggable: true
+      },
       breakpoints: {
         // when window width is <= 320px
         520: {
@@ -565,36 +569,21 @@ $(document).ready(function() {
       unhighlight: validateUnhighlight,
       submitHandler: validateSubmitHandler,
       rules: {
-        // first_name: "required",
-        // phone: "required",
-        email: {
-          required: true,
-          email: true
-        },
-        password: {
-          required: true
-          // minlength: 6
-        }
+        name: "required",
+        phonemail: "required"
+        // email: {
+        //   required: true,
+        //   email: true
+        // },
+        // password: {
+        //   required: true
+        //   // minlength: 6
+        // }
         // phone: validatePhone
-      }
-    });
-    $(".js-form").validate({
-      errorPlacement: validateErrorPlacement,
-      highlight: validateHighlight,
-      unhighlight: validateUnhighlight,
-      submitHandler: validateSubmitHandler,
-      rules: {
-        first_name: "required",
-        // phone: "required",
-        email: {
-          required: true,
-          email: true
-        },
-        password: {
-          required: true,
-          minlength: 6
-        }
-        // phone: validatePhone
+      },
+      messages: {
+        name: "Необходимо заполнить",
+        phonemail: "Необходимо заполнить"
       }
     });
   }

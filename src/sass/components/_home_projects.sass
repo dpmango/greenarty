@@ -85,6 +85,19 @@
         bottom: 20px
         border-right: none
         border-top: none
+  .swiper-container
+    padding-bottom: 60px
+  .swiper-scrollbar
+    border-radius: 0
+    max-width: 400px
+    left: 50%
+    transform: translateX(-50%)
+    height: 10px
+    cursor: pointer
+  .swiper-scrollbar-drag
+    border-radius: 0
+    background: #cccccc
+    height: 10px
 
 +r($desktop)
   .projects
@@ -110,3 +123,10 @@
     &__image-hover
       p
         font-size: 14px
+    .swiper-container
+      padding-bottom: 50px
+    .swiper-scrollbar
+      height: 5px
+      max-width: 300px
+    .swiper-scrollbar-drag
+      height: 5px
