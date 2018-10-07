@@ -5,45 +5,6 @@ $(document).ready(function() {
 
   var _window = $(window);
   var _document = $(document);
-  var easingSwing = [0.02, 0.01, 0.47, 1]; // default jQuery easing for anime.js
-  var lastClickEl;
-
-  // maps settings
-  // should be on top
-  var map,
-    markers = [],
-    markerDefault,
-    markerHover,
-    markersCoord,
-    mapCenter;
-  function updateMapVars() {
-    if ($("#contacts__map").length > 0) {
-      markerDefault = {
-        url: "img/pin.svg",
-        scaledSize: new google.maps.Size(31, 44)
-      };
-      markerHover = {
-        url: "img/pin.svg",
-        scaledSize: new google.maps.Size(31, 44)
-      };
-      markersCoord = [
-        {
-          lat: 41.729992,
-          lng: -88.20742,
-          marker: markerDefault
-        },
-        {
-          lat: 54.695636,
-          lng: 25.259746,
-          marker: markerDefault
-        }
-      ];
-      mapCenter = {
-        lat: 41.729992,
-        lng: -88.20742
-      };
-    }
-  }
 
   ////////////
   // READY - triggered when PJAX DONE
@@ -61,16 +22,16 @@ $(document).ready(function() {
   _window.on("resize", debounce(pagination, 250));
 
   function pageReady() {
-    updateMapVars();
+    // updateMapVars();
 
     initMasks();
     initAutogrow();
     initSelectric();
     initValidations();
 
-    initMap();
+    // initMap();
 
-    // initSliders();
+    initSliders();
   }
 
   // this is a master function which should have all functionality
@@ -82,33 +43,10 @@ $(document).ready(function() {
 
   function initSliders() {
     // EXAMPLE SWIPER
-    new Swiper("[js-slider]", {
-      wrapperClass: "swiper-wrapper",
-      slideClass: "example-slide",
-      direction: "horizontal",
-      loop: false,
-      watchOverflow: true,
-      setWrapperSize: false,
-      spaceBetween: 0,
-      slidesPerView: "auto",
-      // loop: true,
-      normalizeSlideIndex: true,
-      // centeredSlides: true,
-      freeMode: true,
-      // effect: 'fade',
-      autoplay: {
-        delay: 5000
-      },
-      navigation: {
-        nextEl: ".example-next",
-        prevEl: ".example-prev"
-      },
-      breakpoints: {
-        // when window width is <= 992px
-        992: {
-          autoHeight: true
-        }
-      }
+    new Swiper("[js-slider1]", {
+      slidesPerView: 3,
+      loop: true,
+      freeMode: true
     });
   }
 
@@ -274,248 +212,248 @@ $(document).ready(function() {
     });
   }
 
-  //////////
-  // MAP
-  //////////
+  // //////////
+  // // MAP
+  // //////////
 
-  function initMap() {
-    if ($("#contacts__map").length) {
-      map = new google.maps.Map(document.getElementById("contacts__map"), {
-        center: mapCenter,
-        zoom: 15,
-        disableDefaultUI: false,
-        styles: [
-          {
-            featureType: "all",
-            elementType: "labels.text.fill",
-            stylers: [
-              {
-                saturation: 36
-              },
-              {
-                color: "#000000"
-              },
-              {
-                lightness: 40
-              }
-            ]
-          },
-          {
-            featureType: "all",
-            elementType: "labels.text.stroke",
-            stylers: [
-              {
-                visibility: "on"
-              },
-              {
-                color: "#000000"
-              },
-              {
-                lightness: 16
-              }
-            ]
-          },
-          {
-            featureType: "all",
-            elementType: "labels.icon",
-            stylers: [
-              {
-                visibility: "off"
-              }
-            ]
-          },
-          {
-            featureType: "administrative",
-            elementType: "geometry.fill",
-            stylers: [
-              {
-                color: "#000000"
-              },
-              {
-                lightness: 20
-              }
-            ]
-          },
-          {
-            featureType: "administrative",
-            elementType: "geometry.stroke",
-            stylers: [
-              {
-                color: "#000000"
-              },
-              {
-                lightness: 17
-              },
-              {
-                weight: 1.2
-              }
-            ]
-          },
-          {
-            featureType: "landscape",
-            elementType: "geometry",
-            stylers: [
-              {
-                color: "#000000"
-              },
-              {
-                lightness: 20
-              }
-            ]
-          },
-          {
-            featureType: "poi",
-            elementType: "geometry",
-            stylers: [
-              {
-                color: "#000000"
-              },
-              {
-                lightness: 21
-              }
-            ]
-          },
-          {
-            featureType: "road.highway",
-            elementType: "geometry.fill",
-            stylers: [
-              {
-                color: "#000000"
-              },
-              {
-                lightness: 17
-              }
-            ]
-          },
-          {
-            featureType: "road.highway",
-            elementType: "geometry.stroke",
-            stylers: [
-              {
-                color: "#000000"
-              },
-              {
-                lightness: 29
-              },
-              {
-                weight: 0.2
-              }
-            ]
-          },
-          {
-            featureType: "road.arterial",
-            elementType: "geometry",
-            stylers: [
-              {
-                color: "#000000"
-              },
-              {
-                lightness: 18
-              }
-            ]
-          },
-          {
-            featureType: "road.local",
-            elementType: "geometry",
-            stylers: [
-              {
-                color: "#000000"
-              },
-              {
-                lightness: 16
-              }
-            ]
-          },
-          {
-            featureType: "transit",
-            elementType: "geometry",
-            stylers: [
-              {
-                color: "#000000"
-              },
-              {
-                lightness: 19
-              }
-            ]
-          },
-          {
-            featureType: "water",
-            elementType: "geometry",
-            stylers: [
-              {
-                color: "#000000"
-              },
-              {
-                lightness: 17
-              }
-            ]
-          }
-        ]
-      });
+  // function initMap() {
+  //   if ($("#contacts__map").length) {
+  //     map = new google.maps.Map(document.getElementById("contacts__map"), {
+  //       center: mapCenter,
+  //       zoom: 15,
+  //       disableDefaultUI: false,
+  //       styles: [
+  //         {
+  //           featureType: "all",
+  //           elementType: "labels.text.fill",
+  //           stylers: [
+  //             {
+  //               saturation: 36
+  //             },
+  //             {
+  //               color: "#000000"
+  //             },
+  //             {
+  //               lightness: 40
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           featureType: "all",
+  //           elementType: "labels.text.stroke",
+  //           stylers: [
+  //             {
+  //               visibility: "on"
+  //             },
+  //             {
+  //               color: "#000000"
+  //             },
+  //             {
+  //               lightness: 16
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           featureType: "all",
+  //           elementType: "labels.icon",
+  //           stylers: [
+  //             {
+  //               visibility: "off"
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           featureType: "administrative",
+  //           elementType: "geometry.fill",
+  //           stylers: [
+  //             {
+  //               color: "#000000"
+  //             },
+  //             {
+  //               lightness: 20
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           featureType: "administrative",
+  //           elementType: "geometry.stroke",
+  //           stylers: [
+  //             {
+  //               color: "#000000"
+  //             },
+  //             {
+  //               lightness: 17
+  //             },
+  //             {
+  //               weight: 1.2
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           featureType: "landscape",
+  //           elementType: "geometry",
+  //           stylers: [
+  //             {
+  //               color: "#000000"
+  //             },
+  //             {
+  //               lightness: 20
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           featureType: "poi",
+  //           elementType: "geometry",
+  //           stylers: [
+  //             {
+  //               color: "#000000"
+  //             },
+  //             {
+  //               lightness: 21
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           featureType: "road.highway",
+  //           elementType: "geometry.fill",
+  //           stylers: [
+  //             {
+  //               color: "#000000"
+  //             },
+  //             {
+  //               lightness: 17
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           featureType: "road.highway",
+  //           elementType: "geometry.stroke",
+  //           stylers: [
+  //             {
+  //               color: "#000000"
+  //             },
+  //             {
+  //               lightness: 29
+  //             },
+  //             {
+  //               weight: 0.2
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           featureType: "road.arterial",
+  //           elementType: "geometry",
+  //           stylers: [
+  //             {
+  //               color: "#000000"
+  //             },
+  //             {
+  //               lightness: 18
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           featureType: "road.local",
+  //           elementType: "geometry",
+  //           stylers: [
+  //             {
+  //               color: "#000000"
+  //             },
+  //             {
+  //               lightness: 16
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           featureType: "transit",
+  //           elementType: "geometry",
+  //           stylers: [
+  //             {
+  //               color: "#000000"
+  //             },
+  //             {
+  //               lightness: 19
+  //             }
+  //           ]
+  //         },
+  //         {
+  //           featureType: "water",
+  //           elementType: "geometry",
+  //           stylers: [
+  //             {
+  //               color: "#000000"
+  //             },
+  //             {
+  //               lightness: 17
+  //             }
+  //           ]
+  //         }
+  //       ]
+  //     });
 
-      $.each(markersCoord, function(i, coords) {
-        var marker = new google.maps.Marker({
-          position: new google.maps.LatLng(coords.lat, coords.lng),
-          map: map,
-          icon: coords.marker
-        });
-        markers.push(marker);
+  //     $.each(markersCoord, function(i, coords) {
+  //       var marker = new google.maps.Marker({
+  //         position: new google.maps.LatLng(coords.lat, coords.lng),
+  //         map: map,
+  //         icon: coords.marker
+  //       });
+  //       markers.push(marker);
 
-        // click handler
-        google.maps.event.addListener(marker, "click", function() {
-          changeMapsMarker(null, marker);
-        });
-      });
-    }
-  }
+  //       // click handler
+  //       google.maps.event.addListener(marker, "click", function() {
+  //         changeMapsMarker(null, marker);
+  //       });
+  //     });
+  //   }
+  // }
 
-  // change marker onclick
-  _document.on("click", ".contacts__address", function() {
-    var markerId = $(this).data("marker-id") - 1;
-    if (markerId !== undefined) {
-      changeMapsMarker(markerId);
-    }
-  });
+  // // change marker onclick
+  // _document.on("click", ".contacts__address", function() {
+  //   var markerId = $(this).data("marker-id") - 1;
+  //   if (markerId !== undefined) {
+  //     changeMapsMarker(markerId);
+  //   }
+  // });
 
-  function changeMapsMarker(id, marker, clear) {
-    if (id !== null) {
-    } else if (marker !== null) {
-      id = markers.indexOf(marker); // get id
-    }
-    var targetMarker = markers[id];
+  // function changeMapsMarker(id, marker, clear) {
+  //   if (id !== null) {
+  //   } else if (marker !== null) {
+  //     id = markers.indexOf(marker); // get id
+  //   }
+  //   var targetMarker = markers[id];
 
-    // maps controls
-    if (targetMarker) {
-      // reset all markers first
-      $.each(markers, function(i, m) {
-        m.setIcon(markerDefault);
-      });
+  //   // maps controls
+  //   if (targetMarker) {
+  //     // reset all markers first
+  //     $.each(markers, function(i, m) {
+  //       m.setIcon(markerDefault);
+  //     });
 
-      targetMarker.setIcon(markerHover); // set target new image
+  //     targetMarker.setIcon(markerHover); // set target new image
 
-      map.panTo(targetMarker.getPosition());
+  //     map.panTo(targetMarker.getPosition());
 
-      // set active class
-      var linkedControl = $(
-        ".contacts__address[data-marker-id=" + (id + 1) + "]"
-      );
+  //     // set active class
+  //     var linkedControl = $(
+  //       ".contacts__address[data-marker-id=" + (id + 1) + "]"
+  //     );
 
-      if (linkedControl.length > 0) {
-        $(".contacts__address").removeClass("is-active");
-        linkedControl.addClass("is-active");
-      }
-    }
+  //     if (linkedControl.length > 0) {
+  //       $(".contacts__address").removeClass("is-active");
+  //       linkedControl.addClass("is-active");
+  //     }
+  //   }
 
-    if (clear) {
-      // reset all markers first
-      $.each(markers, function(i, m) {
-        m.setIcon(markerDefault);
-      });
+  //   if (clear) {
+  //     // reset all markers first
+  //     $.each(markers, function(i, m) {
+  //       m.setIcon(markerDefault);
+  //     });
 
-      $(".contacts__address").removeClass("is-active");
-      map.panTo(mapCenter);
-    }
-  }
+  //     $(".contacts__address").removeClass("is-active");
+  //     map.panTo(mapCenter);
+  //   }
+  // }
 
   ////////////////
   // FORM VALIDATIONS
