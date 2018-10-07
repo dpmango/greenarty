@@ -45,17 +45,38 @@ body, html
     // padding-top: 100px
 
 .container
-  max-width: 1200px
+  max-width: 1920px
   width: 100%
   margin-left: auto
   margin-right: auto
   padding-left: 40px
   padding-right: 40px
 
-+r($mobile)
++r($tablet)
   .container
-    padding-left: 22px
-    padding-right: 22px
+    padding-left: 20px
+    padding-right: 20px
+
+h2
+  font-family: $prata
+  font-size: 80px
+  color: $fontColor
+  line-height: 1.2
+  width: 100%
+  text-align: center
+  font-weight: 300
+
++r($wide)
+  h2
+    font-size: 65px
+
++r($desktop)
+  h2
+    font-size: 40px
+
++r($tablet)
+  h2
+    font-size: 30px
 
 input
   -moz-appearance: none
