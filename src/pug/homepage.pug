@@ -54,31 +54,75 @@ block content
       .container
         h2 Выполненные проекты
         .projects__carousel
-          .swiper-wrapper(js-slider1)
-            .projects__item.swiper-slide
-              .projects__image
-                img(src="img/project-1.jpg", alt="")
-              p.projects__title Озеленение
-              p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
-            .projects__item.swiper-slide
-              .projects__image
-                img(src="img/project-2.jpg", alt="")
-              p.projects__title Озеленение
-              p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
-            .projects__item.swiper-slide
-              .projects__image
-                img(src="img/project-3.jpg", alt="")
-              p.projects__title Озеленение
-              p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
-            .projects__item.swiper-slide
-              .projects__image
-                img(src="img/project-1.jpg", alt="")
-              p.projects__title Озеленение
-              p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
-            .projects__item.swiper-slide
-              .projects__image
-                img(src="img/project-2.jpg", alt="")
-              p.projects__title Озеленение
-              p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
+          .swiper-container(js-slider-projects)
+            .swiper-wrapper
+              .projects__item.swiper-slide
+                a(href="#")
+                .projects__image
+                  img(src="img/project-1.jpg", alt="")
+                  .projects__image-hover
+                    p подробнее
+                    span.corner
+                    span.corner
+                    span.corner
+                    span.corner
+                p.projects__title Озеленение
+                p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
+              .projects__item.swiper-slide
+                a(href="#")
+                .projects__image
+                  img(src="img/project-2.jpg", alt="")
+                  .projects__image-hover
+                    p подробнее
+                    span.corner
+                    span.corner
+                    span.corner
+                    span.corner
+                p.projects__title Озеленение
+                p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
+              .projects__item.swiper-slide
+                a(href="#")
+                .projects__image
+                  img(src="img/project-3.jpg", alt="")
+                  .projects__image-hover
+                    p подробнее
+                    span.corner
+                    span.corner
+                    span.corner
+                    span.corner
+                p.projects__title Озеленение
+                p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
+              .projects__item.swiper-slide
+                a(href="#")
+                .projects__image
+                  img(src="img/project-1.jpg", alt="")
+                  .projects__image-hover
+                    p подробнее
+                    span.corner
+                    span.corner
+                    span.corner
+                    span.corner
+                p.projects__title Озеленение
+                p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
+              .projects__item.swiper-slide
+                a(href="#")
+                .projects__image
+                  img(src="img/project-2.jpg", alt="")
+                  .projects__image-hover
+                    p подробнее
+                    span.corner
+                    span.corner
+                    span.corner
+                    span.corner
+                p.projects__title Озеленение
+                p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
+            .swiper-pagination
           
   // END SECTION :: projects
+
+  // BEGIN SECTION :: contacts
+  section#section-contacts
+    .contacts
+      .container
+        h2 Контакты
+  // END SECTION :: contacts

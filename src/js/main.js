@@ -22,6 +22,8 @@ $(document).ready(function() {
   _window.on("resize", debounce(pagination, 250));
 
   function pageReady() {
+    initSliders();
+
     // updateMapVars();
 
     initMasks();
@@ -30,8 +32,6 @@ $(document).ready(function() {
     initValidations();
 
     // initMap();
-
-    initSliders();
   }
 
   // this is a master function which should have all functionality
@@ -43,10 +43,28 @@ $(document).ready(function() {
 
   function initSliders() {
     // EXAMPLE SWIPER
-    new Swiper("[js-slider1]", {
+    var mySwiper = new Swiper("[js-slider-projects]", {
+      // Optional parameters
+      direction: "horizontal",
       slidesPerView: 3,
+      spaceBetween: 30,
       loop: true,
-      freeMode: true
+      // pagination: ".swiper-pagination",
+      // paginationClickable: true,
+      parallax: true,
+      effect: "slide",
+      breakpoints: {
+        // when window width is <= 320px
+        520: {
+          slidesPerView: 1,
+          spaceBetween: 0
+        },
+        // when window width is <= 480px
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 20
+        }
+      }
     });
   }
 
@@ -69,6 +87,29 @@ $(document).ready(function() {
       appendToBody: true
     });
   }
+
+  // HAMBURGER TOGGLER
+  _document.on("click", "[js-hamburger]", function() {
+    $(this).toggleClass("is-active");
+    $(".header__mobile").toggleClass("is-active");
+    $("body").toggleClass("is-fixed");
+    $("html").toggleClass("is-fixed");
+  });
+
+  // function closeMobileMenu() {
+  //   $("[js-hamburger]").removeClass("is-active");
+  //   $(".mobile-navi").removeClass("is-active");
+  // }
+
+  _window.scroll(function() {
+    var scroll = _window.scrollTop();
+
+    if (scroll >= 100) {
+      $(".header").addClass("is-fixed");
+    } else {
+      $(".header").removeClass("is-fixed");
+    }
+  });
 
   // Prevent # behavior
   _document
