@@ -52,15 +52,15 @@ block content
   section#section-services
     .services
       .container
-        h2 Услуги
-        .services__scroll
+        h2(data-aos='fade-up') Услуги
+        .services__scroll(data-aos='fade-up')
           .slider-nav(js-services-nav)
             a.slider-nav__link.is-active(data-target="1") Озеленение
             a.slider-nav__link(data-target="2") Проектирование
             a.slider-nav__link(data-target="3") Строительство
             a.slider-nav__link(data-target="4") Освещение
             a.slider-nav__link(data-target="5") Уход
-        .services__slider
+        .services__slider(data-aos='fade-up')
           .swiper-container(js-slider-services)
             .swiper-wrapper
               .swiper-slide
@@ -102,13 +102,13 @@ block content
   section#section-projects
     .projects
       .container
-        h2 Выполненные проекты
+        h2(data-aos='fade-up') Выполненные проекты
         .projects__carousel
           .swiper-container(js-slider-projects)
             .swiper-wrapper
               .projects__item.swiper-slide
                 a(href="#")
-                .projects__image
+                .projects__image.reveal(js-reveal data-anim="ltr")
                   img(src="img/project-1.jpg", alt="")
                   .projects__image-hover
                     p подробнее
@@ -116,11 +116,11 @@ block content
                     span.corner
                     span.corner
                     span.corner
-                p.projects__title Озеленение
-                p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
+                p.projects__title(data-aos='fade-up') Озеленение
+                p.projects__info(data-aos='fade-up') Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
               .projects__item.swiper-slide
                 a(href="#")
-                .projects__image
+                .projects__image.reveal(js-reveal data-anim="ltr")
                   img(src="img/project-2.jpg", alt="")
                   .projects__image-hover
                     p подробнее
@@ -128,11 +128,11 @@ block content
                     span.corner
                     span.corner
                     span.corner
-                p.projects__title Озеленение
-                p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
+                p.projects__title(data-aos='fade-up') Озеленение
+                p.projects__info(data-aos='fade-up') Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
               .projects__item.swiper-slide
                 a(href="#")
-                .projects__image
+                .projects__image.reveal(js-reveal data-anim="ltr")
                   img(src="img/project-3.jpg", alt="")
                   .projects__image-hover
                     p подробнее
@@ -140,11 +140,11 @@ block content
                     span.corner
                     span.corner
                     span.corner
-                p.projects__title Озеленение
-                p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
+                p.projects__title(data-aos='fade-up') Озеленение
+                p.projects__info(data-aos='fade-up') Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
               .projects__item.swiper-slide
                 a(href="#")
-                .projects__image
+                .projects__image.reveal(js-reveal data-anim="ltr")
                   img(src="img/project-1.jpg", alt="")
                   .projects__image-hover
                     p подробнее
@@ -152,11 +152,11 @@ block content
                     span.corner
                     span.corner
                     span.corner
-                p.projects__title Озеленение
-                p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
+                p.projects__title(data-aos='fade-up') Озеленение
+                p.projects__info(data-aos='fade-up') Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
               .projects__item.swiper-slide
                 a(href="#")
-                .projects__image
+                .projects__image.reveal(js-reveal data-anim="ltr")
                   img(src="img/project-2.jpg", alt="")
                   .projects__image-hover
                     p подробнее
@@ -164,8 +164,8 @@ block content
                     span.corner
                     span.corner
                     span.corner
-                p.projects__title Озеленение
-                p.projects__info Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
+                p.projects__title(data-aos='fade-up') Озеленение
+                p.projects__info(data-aos='fade-up') Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками...
             .swiper-scrollbar
           
   // END SECTION :: projects
@@ -174,19 +174,19 @@ block content
   section#section-stages
     .stages
       .container
-        h2 Этапы работы
-        .stages__scroll
+        h2(data-aos='fade-up') Этапы работы
+        .stages__scroll(data-aos='fade-up')
           .slider-nav(js-stages-nav)
             a.slider-nav__link.is-active(data-target="1") Озеленение
             a.slider-nav__link(data-target="2") Проектирование
             a.slider-nav__link(data-target="3") Строительство
             a.slider-nav__link(data-target="4") Освещение
             a.slider-nav__link(data-target="5") Уход
-        .stages__slider
+        .stages__slider(data-aos='fade-up')
           .swiper-container(js-slider-stages)
             .swiper-wrapper
               .swiper-slide
-                .stages__image
+                .stages__image.reveal(js-reveal data-anim="ltr")
                   img(src="img/stages-1.jpg", alt="")
                 .stages__info
                   p.stages__title Озеленение и благоустройство 
@@ -205,7 +205,7 @@ block content
                         span.block
                           span.text Работы по озеленению
               .swiper-slide
-                .stages__image
+                .stages__image.reveal(js-reveal data-anim="ltr")
                   img(src="img/stages-2.jpg", alt="")
                 .stages__info
                   p.stages__title Ландшафтное проектирование
@@ -233,7 +233,7 @@ block content
                         span.block
                           span.text Проектные работы
               .swiper-slide
-                .stages__image
+                .stages__image.reveal(js-reveal data-anim="ltr")
                   img(src="img/stages-3.jpg", alt="")
                 .stages__info
                   p.stages__title Ландшафтное строительство
@@ -273,7 +273,7 @@ block content
                         span.block
                           span.text Проклажка коммуникаций оформление зимних садов
               .swiper-slide
-                .stages__image
+                .stages__image.reveal(js-reveal data-anim="ltr")
                   img(src="img/stages-2.jpg", alt="")
                 .stages__info
                   p.stages__title Этап работы #4
@@ -297,7 +297,7 @@ block content
                         span.block
                           span.text Спортивные и детские площадки
               .swiper-slide
-                .stages__image
+                .stages__image.reveal(js-reveal data-anim="ltr")
                   img(src="img/stages-5.jpg", alt="")
                 .stages__info
                   p.stages__title Уход за участком и садом
@@ -338,27 +338,27 @@ block content
   section
     .team
       .container
-        h2 Команда
+        h2(data-aos="fade-up") Команда
         .team__grid
-          .team__main-slider
+          .team__main-slider(data-aos="fade-up")
             .swiper-container(js-slider-team-main)
               .swiper-wrapper
                 .swiper-slide
-                  .team__main-image
+                  .team__main-image.reveal(js-reveal data-anim="ltr")
                     img(src="img/team-1.jpg", alt="")
                   .team__main-about
                     p.team__main-title Фамилия Имя #1
                     p.team__main-sub-title Специализация. Регалии
                     p.team__main-info Текст описание о человеке. Его достижения и прочее. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.
                 .swiper-slide
-                  .team__main-image
+                  .team__main-image.reveal(js-reveal data-anim="ltr")
                     img(src="img/team-2.jpg", alt="")
                   .team__main-about
                     p.team__main-title Фамилия Имя #2
                     p.team__main-sub-title Специализация. Регалии
                     p.team__main-info Текст описание о человеке. Его достижения и прочее. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.
                 .swiper-slide
-                  .team__main-image
+                  .team__main-image.reveal(js-reveal data-anim="ltr")
                     img(src="img/team-3.jpg", alt="")
                   .team__main-about
                     p.team__main-title Фамилия Имя #3
@@ -384,12 +384,12 @@ block content
   section
     .contacts
       .container#section-contacts
-        img.contacts__image(src="img/footer-1.jpg", alt="")
-        img.contacts__image(src="img/footer-2.jpg", alt="")
-        img.contacts__image(src="img/footer-3.jpg", alt="")
-        h2 Контакты
+        img.contacts__image(src="img/footer-1.jpg", alt="" data-aos="fade")
+        img.contacts__image(src="img/footer-2.jpg", alt="" data-aos="fade")
+        img.contacts__image(src="img/footer-3.jpg", alt="" data-aos="fade")
+        h2(data-aos="fade-up") Контакты
         .contacts__grid
-          .contacts__left
+          .contacts__left(data-aos="fade-up")
             p Телефон
             a.contacts__link(href="tel:+74957874200") +7 495 787 42 00
             p Почта
@@ -414,7 +414,7 @@ block content
                 svg(xmlns='http://www.w3.org/2000/svg', width='50', height='50')
                   path.st0(d='M39.7 0H10.3C4.6 0 0 4.6 0 10.3v29.5C0 45.4 4.6 50 10.3 50h29.5C45.4 50 50 45.4 50 39.7V10.3C50 4.6 45.4 0 39.7 0zM15 43.1H7.5V18.9H15v24.2zm-3.8-27.5c-2.4 0-4.3-1.9-4.3-4.3s1.9-4.4 4.3-4.4 4.3 2 4.3 4.4c.1 2.4-1.9 4.3-4.3 4.3zm31.9 27.5h-7.5V31.3c0-2.8 0-6.4-3.9-6.4s-4.5 3.1-4.5 6.2V43h-7.5V18.9h7.2v3.3h.1c1-1.9 3.4-3.9 7.1-3.9 7.6 0 9 5 9 11.5v13.3z')
           
-          .contacts__right#section-lead
+          .contacts__right#section-lead(data-aos="fade-up")
             form.js-lead-form(action="#" method="#")
               .input-container
                 label(for="f1") Имя
