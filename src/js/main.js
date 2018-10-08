@@ -392,38 +392,26 @@ $(document).ready(function() {
     };
     var validateSubmitHandler = function(form) {
       $(form).addClass("loading");
-      $.ajax({
-        type: "POST",
-        url: $(form).attr("action"),
-        data: $(form).serialize(),
-        success: function(response) {
-          $(form).removeClass("loading");
-          var data = $.parseJSON(response);
-          if (data.status == "success") {
-            // do something I can't test
-          } else {
-            $(form)
-              .find("[data-error]")
-              .html(data.message)
-              .show();
-          }
-        }
-      });
+      alert("Форма ок, показать sucess")
+      // $.ajax({
+      //   type: "POST",
+      //   url: $(form).attr("action"),
+      //   data: $(form).serialize(),
+      //   success: function(response) {
+      //     $(form).removeClass("loading");
+      //     var data = $.parseJSON(response);
+      //     if (data.status == "success") {
+      //       // do something I can't test
+      //     } else {
+      //       $(form)
+      //         .find("[data-error]")
+      //         .html(data.message)
+      //         .show();
+      //     }
+      //   }
+      // });
     };
 
-    var validatePhone = {
-      required: true,
-      normalizer: function(value) {
-        var PHONE_MASK = "(XXX) XXX-XXXX";
-        if (!value || value === PHONE_MASK) {
-          return value;
-        } else {
-          return value.replace(/[^\d]/g, "");
-        }
-      },
-      minlength: 11,
-      digits: true
-    };
 
     ////////
     // FORMS
@@ -431,6 +419,22 @@ $(document).ready(function() {
     /////////////////////
     // REGISTRATION FORM
     ////////////////////
+
+    function emailIsValid(value){
+      var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return emailRegex.test(value);
+    }
+
+    function phoneIsValid(value){
+      // https://www.regextester.com/99415
+      var phoneRegex = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+      return phoneRegex.test(value);
+    }
+
+    $.validator.addMethod('isPhoneMail', function(value, element) {
+      return emailIsValid(value) || phoneIsValid(value)
+    });
+
     $(".js-lead-form").validate({
       errorPlacement: validateErrorPlacement,
       highlight: validateHighlight,
@@ -438,23 +442,32 @@ $(document).ready(function() {
       submitHandler: validateSubmitHandler,
       rules: {
         name: "required",
-        phonemail: "required"
-        // email: {
-        //   required: true,
-        //   email: true
-        // },
-        // password: {
-        //   required: true
-        //   // minlength: 6
-        // }
-        // phone: validatePhone
+        phonemail: {
+          required: true,
+          isPhoneMail: true
+        }
       },
       messages: {
         name: "Необходимо заполнить",
-        phonemail: "Необходимо заполнить"
+        phonemail: {
+          required: "Необходимо заполнить",
+          isPhoneMail: function(value, element){
+            var value = $(element).val();
+            var errMessage;
+
+            if (value.indexOf("@") !== -1) {
+              errMessage = emailIsValid() ? false : "Неверный формат почты"
+            } else {
+              errMessage = phoneIsValid() ? false : "Неверный формат телефона"
+            }
+
+            return errMessage
+          }
+        }
       }
     });
   }
+
 
   // //////////
   // // PAGINATION
@@ -503,8 +516,6 @@ $(document).ready(function() {
           var vScrollBottom = _window.scrollTop() + _window.height();
           var elTop = $(el).offset().top
           var triggerPoint = elTop + ( $(el).height() / 2)
-
-          console.log(vScrollBottom, triggerPoint, vScrollBottom > triggerPoint )
 
           if ( vScrollBottom > triggerPoint ){
             $(el).addClass('is-animated');
