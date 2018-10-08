@@ -1,0 +1,140 @@
+.team
+  padding: 100px 0 0
+  h2
+    margin-bottom: 70px
+  &__grid
+    display: flex
+    align-items: center
+    max-width: 1920px
+    justify-content: space-between
+  &__main-slider
+    width: 75%
+    margin-right: 3.5%
+    .swiper-slide
+      display: flex
+      align-items: center
+      justify-content: space-between
+  &__main-image
+    max-width: 540px
+    width: 40%
+    img
+      width: 100%
+      height: auto
+  &__main-about
+    width: 55%
+    margin-left: 5%
+    flex-direction: column
+  &__main-title
+    font-size: 48px
+    font-family: $prata
+    line-height: 1.2
+    font-weight: 300
+  &__main-sub-title
+    margin-top: 10px
+    font-size: 24px
+    color: $hoverColor
+    font-weight: 300
+  &__main-info
+    font-size: 24px
+    font-weight: 300
+    color: $fontColor
+    line-height: 1.25
+    margin-top: 25px
+  &__preview-slider
+    height: auto
+    max-width: 250px
+    max-height: 500px
+    width: 20%
+    // overflow: hidden
+    .swiper-button-next
+      position: absolute
+      top: 30px
+      width: 50px
+      height: 36px
+      background: url(../img/arrow.svg) center center no-repeat
+      background-size: contain
+      left: 50%
+      transform: translateX(-50%) rotate(-90deg)
+      transition: all $transitionSpeed $ease
+      &.swiper-button-disabled
+        opacity: 0
+    .swiper-button-prev
+      position: absolute
+      top: auto
+      bottom: 10px
+      width: 50px
+      height: 36px
+      background: url(../img/arrow.svg) center center no-repeat
+      background-size: contain
+      left: 50%
+      transform: translateX(-50%) rotate(90deg)
+      transition: all $transitionSpeed $ease
+      &.swiper-button-disabled
+        opacity: 0
+        pointer-events: none
+    .swiper-container
+      // max-height: 510px
+      border: 1px solid red !important
+      // padding-top: 55px
+      // padding-bottom: 55px
+    .swiper-slide
+      height: auto !important
+      max-width: 250px
+      // max-height: 250px
+      display: flex
+      align-items: center
+      justify-content: center
+      min-height: 0
+      &.is-active
+        img
+          filter: none
+      img
+        width: 100%
+        height: auto
+        filter: grayscale(100) brightness(1.2) blur(0.4px)
+        transition: all $transitionSpeed $ease
+
++r($hd)
+  .team
+    &__main-title
+      font-size: 40px
+    &__main-sub-title
+      font-size: 20px
+    &__main-info
+      font-size: 20px
+    &__main-about
+      width: 60%
+    &__main-image
+      width: 40%
+
++r($desktop1068)
+  .team
+    &__main-title
+      font-size: 32px
+    &__main-sub-title
+      font-size: 18px
+    &__main-info
+      font-size: 18px
+      margin-top: 15px
+
++r($tablet)
+  .team
+    &__main-slider
+      .swiper-slide
+        flex-direction: column
+    &__main-about
+      width: 100%
+      margin-top: 15px
+      margin-left: 0
+    &__main-image
+      width: 100%
+      img
+        max-width: 250px
+        height: auto
+    &__main-title
+      font-size: 24px
+    &__main-sub-title
+      font-size: 16px
+    &__main-info
+      font-size: 16px
+      margin-top: 15px

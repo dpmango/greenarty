@@ -14,18 +14,16 @@ $(document).ready(function() {
   legacySupport();
   initaos();
   _window.on("resize", debounce(setBreakpoint, 200));
+  var easingSwing = [0.02, 0.01, 0.47, 1];
 
   // on transition change
-  getPaginationSections();
-  pagination();
-  _window.on("scroll", throttle(pagination, 50));
-  _window.on("resize", debounce(pagination, 250));
+  // getPaginationSections();
+  // pagination();
+  // _window.on("scroll", throttle(pagination, 50));
+  // _window.on("resize", debounce(pagination, 250));
 
   function pageReady() {
-    // initPerfectScrollbar();
     initSliders();
-
-    // updateMapVars();
 
     initMasks();
     initAutogrow();
@@ -33,55 +31,13 @@ $(document).ready(function() {
     initValidations();
 
     initPopups();
-
-    // initMap();
   }
 
   // this is a master function which should have all functionality
   pageReady();
 
-  // ////////////
-  // // SCROLLBAR
-  // ////////////
-  // function initPerfectScrollbar() {
-  //   if ($("[js-scrollbar]").length > 0) {
-  //     $("[js-scrollbar]").each(function(i, scrollbar) {
-  //       var ps;
-
-  //       function initPS() {
-  //         ps = new PerfectScrollbar(scrollbar, {
-  //           // wheelSpeed: 2,
-  //           // wheelPropagation: true,
-  //           minScrollbarLength: 20
-  //         });
-  //       }
-
-  //       initPS();
-
-  //       // toggle init destroy
-  //       function checkMedia() {
-  //         if ($(scrollbar).data("disable-on")) {
-  //           if (mediaCondition($(scrollbar).data("disable-on"))) {
-  //             if ($(scrollbar).is(".ps")) {
-  //               ps.destroy();
-  //               ps = null;
-  //             }
-  //           } else {
-  //             if ($(scrollbar).not(".ps")) {
-  //               initPS();
-  //             }
-  //           }
-  //         }
-  //       }
-
-  //       checkMedia();
-  //       _window.on("resize", debounce(checkMedia, 250));
-  //     });
-  //   }
-  // }
-
   //////////
-  // SLIDERS
+  // POPUP
   //////////
 
   function initPopups() {
@@ -95,6 +51,10 @@ $(document).ready(function() {
       midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
     });
   }
+
+  //////////
+  // SLIDERS
+  //////////
 
   function initSliders() {
     // EXAMPLE SWIPER
@@ -164,6 +124,37 @@ $(document).ready(function() {
       },
       speed: 600
     });
+
+    var gallerySwiper = new Swiper("[js-slider-team-main]", {
+      loop: false,
+      watchOverflow: false,
+      setWrapperSize: true,
+      spaceBetween: 0,
+      slidesPerView: 1,
+      effect: "fade",
+      fadeEffect: {
+        crossFade: true
+      }
+    });
+
+    var thumbsSwiper = new Swiper("[js-slider-preview]", {
+      direction: "vertical",
+      slidesPerView: 3,
+      centeredSlides: true,
+      loop: false,
+      spaceBetween: 10,
+      slideToClickedSlide: true,
+      slideActiveClass: "is-active",
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      }
+    });
+
+    if ($("[js-slider-team-main]").length > 0) {
+      gallerySwiper.controller.control = thumbsSwiper;
+      thumbsSwiper.controller.control = gallerySwiper;
+    }
   }
 
   //////////
@@ -351,249 +342,6 @@ $(document).ready(function() {
     });
   }
 
-  // //////////
-  // // MAP
-  // //////////
-
-  // function initMap() {
-  //   if ($("#contacts__map").length) {
-  //     map = new google.maps.Map(document.getElementById("contacts__map"), {
-  //       center: mapCenter,
-  //       zoom: 15,
-  //       disableDefaultUI: false,
-  //       styles: [
-  //         {
-  //           featureType: "all",
-  //           elementType: "labels.text.fill",
-  //           stylers: [
-  //             {
-  //               saturation: 36
-  //             },
-  //             {
-  //               color: "#000000"
-  //             },
-  //             {
-  //               lightness: 40
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           featureType: "all",
-  //           elementType: "labels.text.stroke",
-  //           stylers: [
-  //             {
-  //               visibility: "on"
-  //             },
-  //             {
-  //               color: "#000000"
-  //             },
-  //             {
-  //               lightness: 16
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           featureType: "all",
-  //           elementType: "labels.icon",
-  //           stylers: [
-  //             {
-  //               visibility: "off"
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           featureType: "administrative",
-  //           elementType: "geometry.fill",
-  //           stylers: [
-  //             {
-  //               color: "#000000"
-  //             },
-  //             {
-  //               lightness: 20
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           featureType: "administrative",
-  //           elementType: "geometry.stroke",
-  //           stylers: [
-  //             {
-  //               color: "#000000"
-  //             },
-  //             {
-  //               lightness: 17
-  //             },
-  //             {
-  //               weight: 1.2
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           featureType: "landscape",
-  //           elementType: "geometry",
-  //           stylers: [
-  //             {
-  //               color: "#000000"
-  //             },
-  //             {
-  //               lightness: 20
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           featureType: "poi",
-  //           elementType: "geometry",
-  //           stylers: [
-  //             {
-  //               color: "#000000"
-  //             },
-  //             {
-  //               lightness: 21
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           featureType: "road.highway",
-  //           elementType: "geometry.fill",
-  //           stylers: [
-  //             {
-  //               color: "#000000"
-  //             },
-  //             {
-  //               lightness: 17
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           featureType: "road.highway",
-  //           elementType: "geometry.stroke",
-  //           stylers: [
-  //             {
-  //               color: "#000000"
-  //             },
-  //             {
-  //               lightness: 29
-  //             },
-  //             {
-  //               weight: 0.2
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           featureType: "road.arterial",
-  //           elementType: "geometry",
-  //           stylers: [
-  //             {
-  //               color: "#000000"
-  //             },
-  //             {
-  //               lightness: 18
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           featureType: "road.local",
-  //           elementType: "geometry",
-  //           stylers: [
-  //             {
-  //               color: "#000000"
-  //             },
-  //             {
-  //               lightness: 16
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           featureType: "transit",
-  //           elementType: "geometry",
-  //           stylers: [
-  //             {
-  //               color: "#000000"
-  //             },
-  //             {
-  //               lightness: 19
-  //             }
-  //           ]
-  //         },
-  //         {
-  //           featureType: "water",
-  //           elementType: "geometry",
-  //           stylers: [
-  //             {
-  //               color: "#000000"
-  //             },
-  //             {
-  //               lightness: 17
-  //             }
-  //           ]
-  //         }
-  //       ]
-  //     });
-
-  //     $.each(markersCoord, function(i, coords) {
-  //       var marker = new google.maps.Marker({
-  //         position: new google.maps.LatLng(coords.lat, coords.lng),
-  //         map: map,
-  //         icon: coords.marker
-  //       });
-  //       markers.push(marker);
-
-  //       // click handler
-  //       google.maps.event.addListener(marker, "click", function() {
-  //         changeMapsMarker(null, marker);
-  //       });
-  //     });
-  //   }
-  // }
-
-  // // change marker onclick
-  // _document.on("click", ".contacts__address", function() {
-  //   var markerId = $(this).data("marker-id") - 1;
-  //   if (markerId !== undefined) {
-  //     changeMapsMarker(markerId);
-  //   }
-  // });
-
-  // function changeMapsMarker(id, marker, clear) {
-  //   if (id !== null) {
-  //   } else if (marker !== null) {
-  //     id = markers.indexOf(marker); // get id
-  //   }
-  //   var targetMarker = markers[id];
-
-  //   // maps controls
-  //   if (targetMarker) {
-  //     // reset all markers first
-  //     $.each(markers, function(i, m) {
-  //       m.setIcon(markerDefault);
-  //     });
-
-  //     targetMarker.setIcon(markerHover); // set target new image
-
-  //     map.panTo(targetMarker.getPosition());
-
-  //     // set active class
-  //     var linkedControl = $(
-  //       ".contacts__address[data-marker-id=" + (id + 1) + "]"
-  //     );
-
-  //     if (linkedControl.length > 0) {
-  //       $(".contacts__address").removeClass("is-active");
-  //       linkedControl.addClass("is-active");
-  //     }
-  //   }
-
-  //   if (clear) {
-  //     // reset all markers first
-  //     $.each(markers, function(i, m) {
-  //       m.setIcon(markerDefault);
-  //     });
-
-  //     $(".contacts__address").removeClass("is-active");
-  //     map.panTo(mapCenter);
-  //   }
-  // }
-
   ////////////////
   // FORM VALIDATIONS
   ////////////////
@@ -682,40 +430,40 @@ $(document).ready(function() {
     });
   }
 
-  //////////
-  // PAGINATION
-  //////////
-  var paginationAnchors, sections;
+  // //////////
+  // // PAGINATION
+  // //////////
+  // var paginationAnchors, sections;
 
-  function getPaginationSections() {
-    paginationAnchors = $(".header__menu .header__menu-link");
-    sections = $(".page__content [data-section]");
-  }
+  // function getPaginationSections() {
+  //   paginationAnchors = $(".header__menu .header__menu-link");
+  //   sections = $(".page__content [data-section]");
+  // }
 
-  function pagination() {
-    // Cache selectors
-    var headerHeight = $(".header").height();
-    var vScroll = _window.scrollTop();
+  // function pagination() {
+  //   // Cache selectors
+  //   var headerHeight = $(".header").height();
+  //   var vScroll = _window.scrollTop();
 
-    if (sections.length === 0) {
-      paginationAnchors.removeClass("is-active");
-      return false;
-    }
+  //   if (sections.length === 0) {
+  //     paginationAnchors.removeClass("is-active");
+  //     return false;
+  //   }
 
-    // Get id of current scroll item
-    var cur = sections.map(function() {
-      if ($(this).offset().top <= vScroll + headerHeight / 0.99) return this;
-    });
-    // Get current element
-    cur = $(cur[cur.length - 1]);
-    var id = cur && cur.length ? cur.data("section") : "1";
+  //   // Get id of current scroll item
+  //   var cur = sections.map(function() {
+  //     if ($(this).offset().top <= vScroll + headerHeight / 0.99) return this;
+  //   });
+  //   // Get current element
+  //   cur = $(cur[cur.length - 1]);
+  //   var id = cur && cur.length ? cur.data("section") : "1";
 
-    // Set/remove active class
-    paginationAnchors
-      .removeClass("is-active")
-      .filter("[data-section='" + id + "']")
-      .addClass("is-active");
-  }
+  //   // Set/remove active class
+  //   paginationAnchors
+  //     .removeClass("is-active")
+  //     .filter("[data-section='" + id + "']")
+  //     .addClass("is-active");
+  // }
 
   //////////
   // BARBA PJAX
@@ -834,8 +582,8 @@ $(document).ready(function() {
   });
 
   Barba.Dispatcher.on("transitionCompleted", function() {
-    getPaginationSections();
-    pagination();
+    // getPaginationSections();
+    // pagination();
 
     if ($(lastClickEl).data("section")) {
       scrollToSection($($(lastClickEl).attr("href")));

@@ -5,7 +5,7 @@ extends shared/_layout
 block content
 
   // BEGIN SECTION :: firstscreen
-  section(data-section='0')
+  section
     .firstscreen
       .firstscreen__info
         h1(data-aos='fade-up') Ландшафтный дизайн
@@ -16,7 +16,7 @@ block content
   // END SECTION :: firstscreen
 
   // BEGIN SECTION :: advantages
-  section(data-section='1')
+  section#section-advantages
     .advantages
       .container
         h2 Преимущества
@@ -49,7 +49,7 @@ block content
   // END SECTION :: advantages
 
   // BEGIN SECTION :: services
-  section
+  section#section-services
     .services
       .container
         h2 Услуги
@@ -99,7 +99,7 @@ block content
   // END SECTION :: services
 
   // BEGIN SECTION :: projects
-  section(data-section='2')
+  section#section-projects
     .projects
       .container
         h2 Выполненные проекты
@@ -171,7 +171,7 @@ block content
   // END SECTION :: projects
 
   // BEGIN SECTION :: stages
-  section
+  section#section-stages
     .stages
       .container
         h2 Этапы работы
@@ -333,6 +333,52 @@ block content
               .swiper-pagination
         
   // END SECTION :: stages
+
+  // BEGIN SECTION :: team
+  section
+    .team
+      .container
+        h2 Команда
+        .team__grid
+          .team__main-slider
+            .swiper-container(js-slider-team-main)
+              .swiper-wrapper
+                .swiper-slide
+                  .team__main-image
+                    img(src="img/team-1.jpg", alt="")
+                  .team__main-about
+                    p.team__main-title Фамилия Имя #1
+                    p.team__main-sub-title Специализация. Регалии
+                    p.team__main-info Текст описание о человеке. Его достижения и прочее. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.
+                .swiper-slide
+                  .team__main-image
+                    img(src="img/team-2.jpg", alt="")
+                  .team__main-about
+                    p.team__main-title Фамилия Имя #2
+                    p.team__main-sub-title Специализация. Регалии
+                    p.team__main-info Текст описание о человеке. Его достижения и прочее. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.
+                .swiper-slide
+                  .team__main-image
+                    img(src="img/team-3.jpg", alt="")
+                  .team__main-about
+                    p.team__main-title Фамилия Имя #3
+                    p.team__main-sub-title Специализация. Регалии
+                    p.team__main-info Текст описание о человеке. Его достижения и прочее. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.
+          .team__preview-slider
+            .swiper-container(js-slider-preview)
+              .swiper-wrapper
+                .swiper-slide
+                  .team__preview-image
+                    img(src="img/team-1.jpg", alt="")
+                .swiper-slide
+                  .team__preview-image
+                    img(src="img/team-2.jpg", alt="")
+                .swiper-slide
+                  .team__preview-image
+                    img(src="img/team-3.jpg", alt="")
+              .swiper-button-next
+              .swiper-button-prev
+  // END SECTION :: team
 
   // BEGIN SECTION :: contacts
   section#section-contacts
