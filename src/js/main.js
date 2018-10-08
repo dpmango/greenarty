@@ -406,8 +406,7 @@ $(document).ready(function() {
         .removeClass("has-error");
     };
     var validateSubmitHandler = function(form) {
-      $(form).addClass("loading");
-      alert("Форма ок, показать sucess")
+      $('[js-trigger-thanks-popup]').click()
       // $.ajax({
       //   type: "POST",
       //   url: $(form).attr("action"),

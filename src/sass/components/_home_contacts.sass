@@ -125,6 +125,15 @@
       max-width: 350px
       width: 25%
 
+  &__hidden-trigger
+    visibility: hidden
+    position: absolute
+    bottom: 0
+    right: 0
+    pointer-events: none
+    height: 0.1em
+    width: 0.1em
+
 +r($hd)
   .contacts
     padding: 200px 0 150px
@@ -144,7 +153,7 @@
     &__grid
       margin-top: 70px
     &__left
-      p,a 
+      p,a
         font-size: 20px
       a
         margin-bottom: 25px
