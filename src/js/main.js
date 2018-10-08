@@ -37,21 +37,44 @@ $(document).ready(function() {
   pageReady();
 
   //////////
+  // ANIMATE FOOTER BUTTON
+  //////////
+
+  [].slice
+    .call(document.querySelectorAll(".progress-button"))
+    .forEach(function(bttn, pos) {
+      new UIProgressButton(bttn, {
+        callback: function(instance) {
+          var progress = 0,
+            interval = setInterval(function() {
+              progress = Math.min(progress + Math.random() * 0.1, 1);
+              instance.setProgress(progress);
+
+              if (progress === 1) {
+                instance.stop(pos === 1 || pos === 3 ? -1 : 1);
+                clearInterval(interval);
+              }
+            }, 150);
+        }
+      });
+    });
+
+  //////////
   // POPUP
   //////////
 
   function initPopups() {
     var startWindowScroll = 0;
-    $('[js-popup]').magnificPopup({
-      type: 'inline',
+    $("[js-popup]").magnificPopup({
+      type: "inline",
       fixedContentPos: true,
       fixedBgPos: true,
-      overflowY: 'auto',
+      overflowY: "auto",
       closeBtnInside: true,
       preloader: false,
       midClick: true,
       removalDelay: 500,
-      mainClass: 'popup-buble',
+      mainClass: "popup-buble",
       callbacks: {
         beforeOpen: function() {
           startWindowScroll = _window.scrollTop();
@@ -64,7 +87,6 @@ $(document).ready(function() {
         }
       }
     });
-
   }
 
   //////////
@@ -72,7 +94,6 @@ $(document).ready(function() {
   //////////
 
   function initSliders() {
-
     // var swiperAnimation = new SwiperAnimation();
 
     // EXAMPLE SWIPER
@@ -122,25 +143,27 @@ $(document).ready(function() {
       // speed: 600,
       speed: 300,
       on: {
-        init: function(){
+        init: function() {
           // swiperAnimation.init(this).animate();
         },
-        slideChange: function(){
+        slideChange: function() {
           // swiperAnimation.init(this).animate();
 
-          if ( !servicesSwiper ) return
-          var curSlide = servicesSwiper.realIndex + 1
-          var linkedControl = $('[js-services-nav] a[data-target="'+curSlide+'"]');
-          linkedControl.siblings().removeClass('is-active');
-          linkedControl.addClass('is-active')
+          if (!servicesSwiper) return;
+          var curSlide = servicesSwiper.realIndex + 1;
+          var linkedControl = $(
+            '[js-services-nav] a[data-target="' + curSlide + '"]'
+          );
+          linkedControl.siblings().removeClass("is-active");
+          linkedControl.addClass("is-active");
         }
       }
     });
 
-    $('[js-services-nav] a').on('click', function(){
+    $("[js-services-nav] a").on("click", function() {
       var index = parseInt($(this).data("target"), 10);
-      servicesSwiper.slideTo(index)
-    })
+      servicesSwiper.slideTo(index);
+    });
 
     var stagesSwiper = new Swiper("[js-slider-stages]", {
       // Optional parameters
@@ -163,21 +186,22 @@ $(document).ready(function() {
       },
       speed: 300,
       on: {
-        slideChange: function(){
-          if ( !stagesSwiper ) return
-          var curSlide = stagesSwiper.realIndex + 1
-          var linkedControl = $('[js-stages-nav] a[data-target="'+curSlide+'"]');
-          linkedControl.siblings().removeClass('is-active');
-          linkedControl.addClass('is-active')
+        slideChange: function() {
+          if (!stagesSwiper) return;
+          var curSlide = stagesSwiper.realIndex + 1;
+          var linkedControl = $(
+            '[js-stages-nav] a[data-target="' + curSlide + '"]'
+          );
+          linkedControl.siblings().removeClass("is-active");
+          linkedControl.addClass("is-active");
         }
       }
     });
 
-    $('[js-stages-nav] a').on('click', function(){
+    $("[js-stages-nav] a").on("click", function() {
       var index = parseInt($(this).data("target"), 10);
-      stagesSwiper.slideTo(index)
-    })
-
+      stagesSwiper.slideTo(index);
+    });
 
     var gallerySwiper = new Swiper("[js-slider-team-main]", {
       loop: false,
@@ -214,15 +238,13 @@ $(document).ready(function() {
     }
   }
 
-
   //////////
   // PARALLAX
   /////////
-  function initParallax(){
-    $('[js-parallax-scene]').each(function(i, scene){
+  function initParallax() {
+    $("[js-parallax-scene]").each(function(i, scene) {
       var parallax = new Parallax(scene);
-    })
-
+    });
   }
 
   //////////
@@ -406,7 +428,7 @@ $(document).ready(function() {
         .removeClass("has-error");
     };
     var validateSubmitHandler = function(form) {
-      $('[js-trigger-thanks-popup]').click()
+      $("[js-trigger-thanks-popup]").click();
       // $.ajax({
       //   type: "POST",
       //   url: $(form).attr("action"),
@@ -426,7 +448,6 @@ $(document).ready(function() {
       // });
     };
 
-
     ////////
     // FORMS
 
@@ -434,19 +455,19 @@ $(document).ready(function() {
     // REGISTRATION FORM
     ////////////////////
 
-    function emailIsValid(value){
+    function emailIsValid(value) {
       var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return emailRegex.test(value);
     }
 
-    function phoneIsValid(value){
+    function phoneIsValid(value) {
       // https://www.regextester.com/99415
       var phoneRegex = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
       return phoneRegex.test(value);
     }
 
-    $.validator.addMethod('isPhoneMail', function(value, element) {
-      return emailIsValid(value) || phoneIsValid(value)
+    $.validator.addMethod("isPhoneMail", function(value, element) {
+      return emailIsValid(value) || phoneIsValid(value);
     });
 
     $(".js-lead-form").validate({
@@ -465,23 +486,22 @@ $(document).ready(function() {
         name: "Необходимо заполнить",
         phonemail: {
           required: "Необходимо заполнить",
-          isPhoneMail: function(value, element){
+          isPhoneMail: function(value, element) {
             var value = $(element).val();
             var errMessage;
 
             if (value.indexOf("@") !== -1) {
-              errMessage = emailIsValid() ? false : "Неверный формат почты"
+              errMessage = emailIsValid() ? false : "Неверный формат почты";
             } else {
-              errMessage = phoneIsValid() ? false : "Неверный формат телефона"
+              errMessage = phoneIsValid() ? false : "Неверный формат телефона";
             }
 
-            return errMessage
+            return errMessage;
           }
         }
       }
     });
   }
-
 
   // //////////
   // // PAGINATION
@@ -521,34 +541,31 @@ $(document).ready(function() {
   ////////////
   // REVEAL FUNCTIONS
   ////////////
-  function initScrollMonitor(fromPjax){
-    $('[js-reveal]').each(function(i, el){
-      var type = $(el).data('type') || "halflyEnterViewport"
+  function initScrollMonitor(fromPjax) {
+    $("[js-reveal]").each(function(i, el) {
+      var type = $(el).data("type") || "halflyEnterViewport";
 
-      if ( type === "halflyEnterViewport"){
-        var scrollListener = throttle(function(){
+      if (type === "halflyEnterViewport") {
+        var scrollListener = throttle(function() {
           var vScrollBottom = _window.scrollTop() + _window.height();
-          var elTop = $(el).offset().top
-          var triggerPoint = elTop + ( $(el).height() / 2)
+          var elTop = $(el).offset().top;
+          var triggerPoint = elTop + $(el).height() / 2;
 
-          if ( vScrollBottom > triggerPoint ){
-            $(el).addClass('is-animated');
-            window.removeEventListener('scroll', scrollListener, false); // clear debounce func
+          if (vScrollBottom > triggerPoint) {
+            $(el).addClass("is-animated");
+            window.removeEventListener("scroll", scrollListener, false); // clear debounce func
           }
-        }, 100)
+        }, 100);
 
-        window.addEventListener('scroll', scrollListener, false);
-        return
+        window.addEventListener("scroll", scrollListener, false);
+        return;
       }
-
     });
   }
-
 
   // some plugins get bindings onNewPage only that way
   function triggerBody() {
     $(window).scroll();
     $(window).resize();
   }
-
 });
