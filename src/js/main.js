@@ -41,15 +41,30 @@ $(document).ready(function() {
   //////////
 
   function initPopups() {
-    $("[js-popup]").magnificPopup({
-      removalDelay: 500, //delay removal by X to allow out-animation
+    var startWindowScroll = 0;
+    $('[js-popup]').magnificPopup({
+      type: 'inline',
+      fixedContentPos: true,
+      fixedBgPos: true,
+      overflowY: 'auto',
+      closeBtnInside: true,
+      preloader: false,
+      midClick: true,
+      removalDelay: 500,
+      mainClass: 'popup-buble',
       callbacks: {
         beforeOpen: function() {
+          startWindowScroll = _window.scrollTop();
           this.st.mainClass = this.st.el.attr("data-effect");
+          // $('html').addClass('mfp-helper');
+        },
+        close: function() {
+          // $('html').removeClass('mfp-helper');
+          _window.scrollTop(startWindowScroll);
         }
-      },
-      midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+      }
     });
+
   }
 
   //////////
