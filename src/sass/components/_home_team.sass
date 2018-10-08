@@ -46,35 +46,37 @@
     max-height: 500px
     width: 20%
     // overflow: hidden
-    .swiper-button-next
+    .slick-slider
+      padding: 50px 0
+    .slick-next, .slick-prev
       position: absolute
-      top: 30px
-      width: 50px
-      height: 36px
-      background: url(../img/arrow.svg) center center no-repeat
+      z-index: 2
+      font-size: 0
+      border: 0
+      box-shadow: none
+      background: transparent url(../img/arrow.svg) center center no-repeat
       background-size: contain
       left: 50%
-      transform: translateX(-50%) rotate(-90deg)
-      transition: all $transitionSpeed $ease
-      &.swiper-button-disabled
-        opacity: 0
-    .swiper-button-prev
-      position: absolute
-      top: auto
-      bottom: 10px
-      width: 50px
-      height: 36px
-      background: url(../img/arrow.svg) center center no-repeat
-      background-size: contain
-      left: 50%
-      transform: translateX(-50%) rotate(90deg)
+      cursor: pointer
       transition: all $transitionSpeed $ease
       &.swiper-button-disabled
         opacity: 0
         pointer-events: none
+    .slick-next
+      top: 0px
+      width: 50px
+      height: 36px
+      transform: translateX(-50%) rotate(-90deg)
+
+    .slick-prev
+      bottom: 0px
+      width: 50px
+      height: 36px
+      transform: translateX(-50%) rotate(90deg)
+
     .swiper-container
       // max-height: 510px
-      border: 1px solid red !important
+      // border: 1px solid red !important
       // padding-top: 55px
       // padding-bottom: 55px
     .swiper-slide
@@ -86,12 +88,16 @@
       // justify-content: center
       min-height: 0
       font-size: 0
-      &.is-active
-        img
-          filter: none
+
       img
+        will-change: filter
         filter: grayscale(100) brightness(1.2) blur(0.4px)
         transition: all $transitionSpeed $ease
+    .slick-current
+      .swiper-slide
+        img
+          filter: none
+
   &__preview-image
     position: relative
     overflow: hidden

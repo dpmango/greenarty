@@ -370,28 +370,26 @@ block content
                     p.team__main-sub-title Специализация. Регалии
                     p.team__main-info Текст описание о человеке. Его достижения и прочее. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.
           .team__preview-slider
-            .swiper-container(js-slider-preview)
-              .swiper-wrapper
-                .swiper-slide
-                  .team__preview-image
-                    img(src="img/team-1.jpg", alt="")
-                .swiper-slide
-                  .team__preview-image
-                    img(src="img/team-2.jpg", alt="")
-                .swiper-slide
-                  .team__preview-image
-                    img(src="img/team-3.jpg", alt="")
-              .swiper-button-next
-              .swiper-button-prev
+            div(js-slider-preview)
+              .swiper-slide(data-slide="1")
+                .team__preview-image
+                  img(src="img/team-1.jpg", alt="")
+              .swiper-slide(data-slide="2")
+                .team__preview-image
+                  img(src="img/team-2.jpg", alt="")
+              .swiper-slide(data-slide="3")
+                .team__preview-image
+                  img(src="img/team-3.jpg", alt="")
+
   // END SECTION :: team
 
   // BEGIN SECTION :: contacts
   section
     .contacts
       .container#section-contacts
-        img.contacts__image(src="img/footer-1.jpg", alt="" data-aos="fade")
-        img.contacts__image(src="img/footer-2.jpg", alt="" data-aos="fade")
-        img.contacts__image(src="img/footer-3.jpg", alt="" data-aos="fade")
+        img.contacts__image(src="img/footer-1.jpg", alt="")
+        img.contacts__image(src="img/footer-2.jpg", alt="")
+        img.contacts__image(src="img/footer-3.jpg", alt="")
         h2(data-aos="fade-up") Контакты
         .contacts__grid
           .contacts__left(data-aos="fade-up")
