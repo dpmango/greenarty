@@ -145,7 +145,7 @@ $(document).ready(function() {
       fadeEffect: {
         crossFade: true
       },
-      speed: 600,
+      speed: 300,
       on: {
         slideChange: function(){
           if ( !stagesSwiper ) return
@@ -172,7 +172,8 @@ $(document).ready(function() {
       effect: "fade",
       fadeEffect: {
         crossFade: true
-      }
+      },
+      speed: 300
     });
 
     var thumbsSwiper = new Swiper("[js-slider-preview]", {
