@@ -88,6 +88,27 @@ $(document).ready(function() {
       },
       speed: 600
     });
+
+    var mySwiper3 = new Swiper("[js-slider-stages]", {
+      // Optional parameters
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        renderBullet: function(index, className) {
+          return '<span class="' + className + '">' + (index + 1) + "</span>";
+        }
+      },
+      slidesPerView: 1,
+      paginationClickable: true,
+      spaceBetween: 30,
+      loop: true,
+      mousewheelControl: true,
+      effect: "fade",
+      fadeEffect: {
+        crossFade: true
+      },
+      speed: 600
+    });
   }
 
   //////////
