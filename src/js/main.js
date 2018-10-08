@@ -253,20 +253,30 @@ $(document).ready(function() {
     $("html").toggleClass("is-fixed");
   });
 
-  // function closeMobileMenu() {
-  //   $("[js-hamburger]").removeClass("is-active");
-  //   $(".mobile-navi").removeClass("is-active");
-  // }
+  _document.on("click", ".header__menu-link, .header__btn", closeMobileMenu)
 
-  _window.scroll(function() {
+  function closeMobileMenu() {
+    $("[js-hamburger]").removeClass("is-active");
+    $(".header__mobile").removeClass("is-active");
+  }
+
+  // header scroll
+  _window.on('scroll', throttle(function() {
     var scroll = _window.scrollTop();
+    var headerHeight = $('.header').height();
+    var heroHeight = $('.firstscreen').height();
 
-    if (scroll >= 100) {
+    if ( scroll > headerHeight){
+      $('.header').addClass('is-fixed-start');
+    } else {
+      $('.header').removeClass('is-fixed-start')
+    }
+    if (scroll >= heroHeight - (headerHeight /2)) {
       $(".header").addClass("is-fixed");
     } else {
       $(".header").removeClass("is-fixed");
     }
-  });
+  }, 25));
 
   // Prevent # behavior
   _document

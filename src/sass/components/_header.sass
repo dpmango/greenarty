@@ -7,10 +7,10 @@
   background: transparent
   z-index: 100
   transform: translate3d(0,0,0)
-  transition: all $transitionSpeed $ease
-  &.is-fixed
+  &.is-fixed-start
     position: fixed
     background: rgba(0,0,0,0.9)
+    transform: translate3d(0,-100%,0)
     .header__wrapper
       padding: 20px 0
     .header__menu
@@ -25,6 +25,10 @@
       img
         height: 38px
         margin-top: -5px
+  &.is-fixed
+    transition: all $transitionSpeed $ease
+    transform: translate3d(0,0,0)
+
   &__mobile
     display: flex
     width: 100%
@@ -35,7 +39,7 @@
     align-items: center
     justify-content: space-between
     padding: 60px 45px 20px
-    transition: all $transitionSpeed $ease
+    // transition: all $transitionSpeed $ease
   &__logo
     transition: all $transitionSpeed $ease
     &:hover
@@ -51,7 +55,7 @@
     width: 100%
     text-align: center
     display: flex
-    align-content: 
+    align-content:
     justify-content: space-between
     transition: all $transitionSpeed $ease
   &__menu-link
@@ -106,7 +110,7 @@ body.is-transitioning
       img
         height: 35px
         margin-top: -12px
-    &.is-fixed
+    &.is-fixed-start
       .header__wrapper
         padding: 20px 0 20px
       .header__menu
@@ -138,7 +142,7 @@ body.is-transitioning
       img
         height: 20px
         margin-top: -10px
-    &.is-fixed
+    &.is-fixed-start
       .header__wrapper
         padding: 20px 0 20px
       .header__menu
@@ -155,7 +159,7 @@ body.is-transitioning
           margin-top: -10px
 +r($tablet)
   .header
-    &.is-fixed
+    &.is-fixed-start
       .header__wrapper
         padding: 10px 0
       .header__logo
