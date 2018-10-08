@@ -189,29 +189,60 @@ $(document).ready(function() {
       fadeEffect: {
         crossFade: true
       },
-      speed: 300
-    });
-
-    var thumbsSwiper = new Swiper("[js-slider-preview]", {
-      direction: "vertical",
-      slidesPerView: 2,
-      // setWrapperSize: true,
-      autoHeight: true,
-      // centeredSlides: true,
-      loop: false,
-      spaceBetween: 10,
-      // slideToClickedSlide: true,
-      slideActiveClass: "is-active",
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
+      speed: 300,
+      on: {
+        slideChange: function(){
+          if ( !gallerySwiper ) return
+          var curSlide = gallerySwiper.realIndex
+          $('[js-slider-preview]').slick('slickGoTo', curSlide);
+        }
       }
     });
 
-    if ($("[js-slider-team-main]").length > 0) {
-      gallerySwiper.controller.control = thumbsSwiper;
-      thumbsSwiper.controller.control = gallerySwiper;
-    }
+
+    $('[js-slider-preview]').slick({
+      accessibility: false,
+      arrows: true,
+      infinite: true,
+      // infinite: false,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      vertical: true,
+      verticalSwiping: true
+    });
+
+    // click to slide for slick fix
+    $('[js-slider-preview] .swiper-slide').on('click', function(){
+      var index = $(this).data('slide')
+      $('[js-slider-preview]').slick('slickGoTo', (index - 1));
+    })
+
+    $('[js-slider-preview]').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+      gallerySwiper.slideTo(nextSlide)
+    });
+
+
+
+    // var thumbsSwiper = new Swiper("[js-slider-preview]", {
+    //   direction: "vertical",
+    //   slidesPerView: 2,
+    //   // setWrapperSize: true,
+    //   autoHeight: true,
+    //   // centeredSlides: true,
+    //   loop: false,
+    //   spaceBetween: 10,
+    //   // slideToClickedSlide: true,
+    //   slideActiveClass: "is-active",
+    //   navigation: {
+    //     nextEl: ".swiper-button-next",
+    //     prevEl: ".swiper-button-prev"
+    //   }
+    // });
+
+    // if ($("[js-slider-team-main]").length > 0) {
+    //   gallerySwiper.controller.control = thumbsSwiper;
+    //   thumbsSwiper.controller.control = gallerySwiper;
+    // }
   }
 
 
