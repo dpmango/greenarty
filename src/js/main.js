@@ -22,6 +22,7 @@ $(document).ready(function() {
   // _window.on("resize", debounce(pagination, 250));
 
   function pageReady() {
+    initPopups();
     initSliders();
     initParallax();
 
@@ -29,7 +30,7 @@ $(document).ready(function() {
     initAutogrow();
     initValidations();
 
-    initPopups();
+    initScrollMonitor();
   }
 
   // this is a master function which should have all functionality
@@ -489,6 +490,34 @@ $(document).ready(function() {
   //     .filter("[data-section='" + id + "']")
   //     .addClass("is-active");
   // }
+
+  ////////////
+  // REVEAL FUNCTIONS
+  ////////////
+  function initScrollMonitor(fromPjax){
+    $('[js-reveal]').each(function(i, el){
+      var type = $(el).data('type') || "halflyEnterViewport"
+
+      if ( type === "halflyEnterViewport"){
+        var scrollListener = throttle(function(){
+          var vScrollBottom = _window.scrollTop() + _window.height();
+          var elTop = $(el).offset().top
+          var triggerPoint = elTop + ( $(el).height() / 2)
+
+          console.log(vScrollBottom, triggerPoint, vScrollBottom > triggerPoint )
+
+          if ( vScrollBottom > triggerPoint ){
+            $(el).addClass('is-animated');
+            window.removeEventListener('scroll', scrollListener, false); // clear debounce func
+          }
+        }, 100)
+
+        window.addEventListener('scroll', scrollListener, false);
+        return
+      }
+
+    });
+  }
 
 
   // some plugins get bindings onNewPage only that way
