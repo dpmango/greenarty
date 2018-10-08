@@ -22,6 +22,7 @@ $(document).ready(function() {
   _window.on("resize", debounce(pagination, 250));
 
   function pageReady() {
+    // initPerfectScrollbar();
     initSliders();
 
     // updateMapVars();
@@ -31,15 +32,69 @@ $(document).ready(function() {
     initSelectric();
     initValidations();
 
+    initPopups();
+
     // initMap();
   }
 
   // this is a master function which should have all functionality
   pageReady();
 
+  // ////////////
+  // // SCROLLBAR
+  // ////////////
+  // function initPerfectScrollbar() {
+  //   if ($("[js-scrollbar]").length > 0) {
+  //     $("[js-scrollbar]").each(function(i, scrollbar) {
+  //       var ps;
+
+  //       function initPS() {
+  //         ps = new PerfectScrollbar(scrollbar, {
+  //           // wheelSpeed: 2,
+  //           // wheelPropagation: true,
+  //           minScrollbarLength: 20
+  //         });
+  //       }
+
+  //       initPS();
+
+  //       // toggle init destroy
+  //       function checkMedia() {
+  //         if ($(scrollbar).data("disable-on")) {
+  //           if (mediaCondition($(scrollbar).data("disable-on"))) {
+  //             if ($(scrollbar).is(".ps")) {
+  //               ps.destroy();
+  //               ps = null;
+  //             }
+  //           } else {
+  //             if ($(scrollbar).not(".ps")) {
+  //               initPS();
+  //             }
+  //           }
+  //         }
+  //       }
+
+  //       checkMedia();
+  //       _window.on("resize", debounce(checkMedia, 250));
+  //     });
+  //   }
+  // }
+
   //////////
   // SLIDERS
   //////////
+
+  function initPopups() {
+    $("[js-popup]").magnificPopup({
+      removalDelay: 500, //delay removal by X to allow out-animation
+      callbacks: {
+        beforeOpen: function() {
+          this.st.mainClass = this.st.el.attr("data-effect");
+        }
+      },
+      midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+    });
+  }
 
   function initSliders() {
     // EXAMPLE SWIPER
