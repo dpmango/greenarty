@@ -3,6 +3,9 @@
   &__slider
     max-width: 95%
     margin: 90px auto 0
+  .swiper-container
+    // needs some space for parallax
+    overflow: visible
   .swiper-slide
     display: flex
     align-items: center
@@ -26,6 +29,25 @@
     color: $fontColor
     margin-top: 35px
     font-weight: 300
+
+  // animation part
+  &__image, &__title, &__sub-title
+    transition: .25s $ease
+    transform: translate(30px,0)
+    opacity: 0
+
+  .swiper-slide-active
+    .services
+      &__image, &__title, &__sub-title
+        opacity: 1
+        transform: translate(0,0)
+      &__image
+        transition-delay: .2s
+      &__title
+        transition-delay: .4s
+      &__sub-title
+        transition-delay: .5s
+
   .swiper-pagination
     position: absolute
     left: auto

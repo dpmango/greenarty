@@ -23,6 +23,7 @@ $(document).ready(function() {
 
   function pageReady() {
     initSliders();
+    initParallax();
 
     // initMasks();
     initAutogrow();
@@ -56,7 +57,7 @@ $(document).ready(function() {
 
   function initSliders() {
 
-    var swiperAnimation = new SwiperAnimation();
+    // var swiperAnimation = new SwiperAnimation();
 
     // EXAMPLE SWIPER
     var projectsSwiper = new Swiper("[js-slider-projects]", {
@@ -98,17 +99,18 @@ $(document).ready(function() {
       spaceBetween: 30,
       loop: true,
       mousewheelControl: true,
-      // effect: "fade",
+      effect: "fade",
       // fadeEffect: {
       //   crossFade: true
       // },
       // speed: 600,
+      speed: 300,
       on: {
         init: function(){
-          swiperAnimation.init(this).animate();
+          // swiperAnimation.init(this).animate();
         },
         slideChange: function(){
-          swiperAnimation.init(this).animate();
+          // swiperAnimation.init(this).animate();
 
           if ( !servicesSwiper ) return
           var curSlide = servicesSwiper.realIndex + 1
@@ -193,6 +195,17 @@ $(document).ready(function() {
       gallerySwiper.controller.control = thumbsSwiper;
       thumbsSwiper.controller.control = gallerySwiper;
     }
+  }
+
+
+  //////////
+  // PARALLAX
+  /////////
+  function initParallax(){
+    $('[js-parallax-scene]').each(function(i, scene){
+      var parallax = new Parallax(scene);
+    })
+
   }
 
   //////////
