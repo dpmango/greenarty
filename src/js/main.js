@@ -13,7 +13,6 @@ $(document).ready(function() {
   // single time initialization
   legacySupport();
   initaos();
-  _window.on("resize", debounce(setBreakpoint, 200));
   var easingSwing = [0.02, 0.01, 0.47, 1];
 
   // on transition change
@@ -25,9 +24,8 @@ $(document).ready(function() {
   function pageReady() {
     initSliders();
 
-    initMasks();
+    // initMasks();
     initAutogrow();
-    initSelectric();
     initValidations();
 
     initPopups();
@@ -57,8 +55,11 @@ $(document).ready(function() {
   //////////
 
   function initSliders() {
+
+    var swiperAnimation = new SwiperAnimation();
+
     // EXAMPLE SWIPER
-    var mySwiper = new Swiper("[js-slider-projects]", {
+    var projectsSwiper = new Swiper("[js-slider-projects]", {
       // Optional parameters
       direction: "horizontal",
       slidesPerView: 3,
@@ -86,7 +87,7 @@ $(document).ready(function() {
       }
     });
 
-    var mySwiper2 = new Swiper("[js-slider-services]", {
+    var servicesSwiper = new Swiper("[js-slider-services]", {
       // Optional parameters
       pagination: {
         el: ".swiper-pagination",
@@ -97,33 +98,68 @@ $(document).ready(function() {
       spaceBetween: 30,
       loop: true,
       mousewheelControl: true,
-      effect: "fade",
-      fadeEffect: {
-        crossFade: true
-      },
-      speed: 600
+      // effect: "fade",
+      // fadeEffect: {
+      //   crossFade: true
+      // },
+      // speed: 600,
+      on: {
+        init: function(){
+          swiperAnimation.init(this).animate();
+        },
+        slideChange: function(){
+          swiperAnimation.init(this).animate();
+
+          if ( !servicesSwiper ) return
+          var curSlide = servicesSwiper.realIndex + 1
+          var linkedControl = $('[js-services-nav] a[data-target="'+curSlide+'"]');
+          linkedControl.siblings().removeClass('is-active');
+          linkedControl.addClass('is-active')
+        }
+      }
     });
 
-    var mySwiper3 = new Swiper("[js-slider-stages]", {
+    $('[js-services-nav] a').on('click', function(){
+      var index = parseInt($(this).data("target"), 10);
+      servicesSwiper.slideTo(index)
+    })
+
+    var stagesSwiper = new Swiper("[js-slider-stages]", {
       // Optional parameters
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-        renderBullet: function(index, className) {
-          return '<span class="' + className + '">' + (index + 1) + "</span>";
-        }
-      },
+      // pagination: {
+      //   el: ".swiper-pagination",
+      //   clickable: true,
+      //   renderBullet: function(index, className) {
+      //     return '<span class="' + className + '">' + (index + 1) + "</span>";
+      //   }
+      // },
       slidesPerView: 1,
       paginationClickable: true,
       spaceBetween: 30,
+      autoHeight: true,
       loop: true,
       mousewheelControl: true,
       effect: "fade",
       fadeEffect: {
         crossFade: true
       },
-      speed: 600
+      speed: 600,
+      on: {
+        slideChange: function(){
+          if ( !stagesSwiper ) return
+          var curSlide = stagesSwiper.realIndex + 1
+          var linkedControl = $('[js-stages-nav] a[data-target="'+curSlide+'"]');
+          linkedControl.siblings().removeClass('is-active');
+          linkedControl.addClass('is-active')
+        }
+      }
     });
+
+    $('[js-stages-nav] a').on('click', function(){
+      var index = parseInt($(this).data("target"), 10);
+      stagesSwiper.slideTo(index)
+    })
+
 
     var gallerySwiper = new Swiper("[js-slider-team-main]", {
       loop: false,
@@ -139,11 +175,13 @@ $(document).ready(function() {
 
     var thumbsSwiper = new Swiper("[js-slider-preview]", {
       direction: "vertical",
-      slidesPerView: 3,
-      centeredSlides: true,
+      slidesPerView: 2,
+      // setWrapperSize: true,
+      autoHeight: true,
+      // centeredSlides: true,
       loop: false,
       spaceBetween: 10,
-      slideToClickedSlide: true,
+      // slideToClickedSlide: true,
       slideActiveClass: "is-active",
       navigation: {
         nextEl: ".swiper-button-next",
@@ -205,28 +243,10 @@ $(document).ready(function() {
     .on("click", '[href="#"]', function(e) {
       e.preventDefault();
     })
-    .on("click", "a[href]", function(e) {
-      if (Barba.Pjax.transitionProgress) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-
-      if (e.currentTarget.href === window.location.href) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    })
     .on("click", 'a[href^="#section"]', function(e) {
       // section scroll
       var el = $(this).attr("href");
-
-      if ($(el).length === 0) {
-        lastClickEl = $(this).get(0);
-        Barba.Pjax.goTo($(".header__logo").attr("href"));
-      } else {
-        scrollToSection($(el));
-      }
-
+      scrollToSection($(el));
       return false;
     });
 
@@ -327,19 +347,10 @@ $(document).ready(function() {
 
   // Masked input
   function initMasks() {
-    $("[js-dateMask]").mask("99.99.99", { placeholder: "ДД.ММ.ГГ" });
+    // $("[js-dateMask]").mask("99.99.99", { placeholder: "ДД.ММ.ГГ" });
     // $("input[type='tel']").mask("(000) 000-0000", {
     //   placeholder: "+7 (___) ___-____"
     // });
-  }
-
-  // selectric
-  function initSelectric() {
-    $("select").selectric({
-      maxHeight: 300,
-      disableOnMobile: false,
-      nativeOnMobile: false
-    });
   }
 
   ////////////////
@@ -405,7 +416,7 @@ $(document).ready(function() {
     /////////////////////
     // REGISTRATION FORM
     ////////////////////
-    $(".js-registration-form").validate({
+    $(".js-lead-form").validate({
       errorPlacement: validateErrorPlacement,
       highlight: validateHighlight,
       unhighlight: validateUnhighlight,
@@ -465,130 +476,6 @@ $(document).ready(function() {
   //     .addClass("is-active");
   // }
 
-  //////////
-  // BARBA PJAX
-  //////////
-
-  Barba.Pjax.Dom.containerClass = "page";
-
-  var OverlayTransition = Barba.BaseTransition.extend({
-    start: function() {
-      Promise.all([this.newContainerLoading, this.fadeOut()]).then(
-        this.fadeIn.bind(this)
-      );
-    },
-
-    fadeOut: function() {
-      var deferred = Barba.Utils.deferred();
-
-      // store overlay globally to access in fadein
-      this.$overlay = $('<div class="js-transition-overlay"></div>');
-      this.$overlay.insertAfter(".header");
-      $("body").addClass("is-transitioning");
-
-      TweenLite.fromTo(
-        this.$overlay,
-        0.6,
-        {
-          x: "0%"
-        },
-        {
-          x: "100%",
-          ease: Quart.easeIn,
-          onComplete: function() {
-            deferred.resolve();
-          }
-        }
-      );
-
-      return deferred.promise;
-    },
-
-    fadeIn: function() {
-      var _this = this; // copy to acces inside animation callbacks
-      var $el = $(this.newContainer);
-
-      $(this.oldContainer).hide();
-
-      $el.css({
-        visibility: "visible"
-      });
-
-      TweenLite.to(window, 0.2, {
-        scrollTo: 1,
-        ease: easingSwing
-      });
-
-      AOS.refreshHard();
-
-      // TweenLite.set(this.$overlay, {
-      //   rotation: 0.01,
-      //   force3D: true
-      // });
-
-      TweenLite.fromTo(
-        this.$overlay,
-        1,
-        {
-          x: "100%",
-          overwrite: "all"
-        },
-        {
-          x: "200%",
-          ease: Expo.easeOut,
-          delay: 0.2,
-          onComplete: function() {
-            _this.$overlay.remove();
-            triggerBody();
-            $("body").removeClass("is-transitioning");
-            _this.done();
-          }
-        }
-      );
-    }
-  });
-
-  // set barba transition
-  Barba.Pjax.getTransition = function() {
-    // return FadeTransition;
-    return OverlayTransition;
-  };
-
-  Barba.Prefetch.init();
-  Barba.Pjax.start();
-
-  // event handlers
-  Barba.Dispatcher.on("linkClicked", function(el) {
-    lastClickEl = el; // save last click to detect transition type
-  });
-
-  Barba.Dispatcher.on("initStateChange", function(currentStatus) {
-    var container = Barba.Pjax.Dom.getContainer();
-    var haveContainer = $(container).find(".page__content").length > 0;
-
-    if (!haveContainer) {
-      // handle error - redirect ot page regular way
-      window.location.href = currentStatus.url;
-    }
-  });
-
-  Barba.Dispatcher.on("newPageReady", function(
-    currentStatus,
-    oldStatus,
-    container,
-    newPageRawHTML
-  ) {
-    pageReady();
-  });
-
-  Barba.Dispatcher.on("transitionCompleted", function() {
-    // getPaginationSections();
-    // pagination();
-
-    if ($(lastClickEl).data("section")) {
-      scrollToSection($($(lastClickEl).attr("href")));
-    }
-  });
 
   // some plugins get bindings onNewPage only that way
   function triggerBody() {
@@ -596,25 +483,4 @@ $(document).ready(function() {
     $(window).resize();
   }
 
-  //////////
-  // DEVELOPMENT HELPER
-  //////////
-  function setBreakpoint() {
-    var wHost = window.location.host.toLowerCase();
-    var displayCondition =
-      wHost.indexOf("localhost") >= 0 || wHost.indexOf("surge") >= 0;
-    if (displayCondition) {
-      var wWidth = _window.width();
-
-      var content = "<div class='dev-bp-debug'>" + wWidth + "</div>";
-
-      $(".page").append(content);
-      setTimeout(function() {
-        $(".dev-bp-debug").fadeOut();
-      }, 1000);
-      setTimeout(function() {
-        $(".dev-bp-debug").remove();
-      }, 1500);
-    }
-  }
 });

@@ -54,45 +54,45 @@ block content
       .container
         h2 Услуги
         .services__scroll
-          .services__points
-            a.services__points-link.is-active(href="#") Озеленение
-            a.services__points-link(href="#") Проектирование
-            a.services__points-link(href="#") Строительство
-            a.services__points-link(href="#") Освещение
-            a.services__points-link(href="#") Уход
+          .slider-nav(js-services-nav)
+            a.slider-nav__link.is-active(data-target="1") Озеленение
+            a.slider-nav__link(data-target="2") Проектирование
+            a.slider-nav__link(data-target="3") Строительство
+            a.slider-nav__link(data-target="4") Освещение
+            a.slider-nav__link(data-target="5") Уход
         .services__slider
           .swiper-container(js-slider-services)
             .swiper-wrapper
               .swiper-slide
-                .services__image
+                .services__image(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".1s")
                   img(src="img/service-1.png", alt="")
                 .services__info
-                  p.services__title Озеленение и благоустройство участка
-                  p.services__sub-title Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками, шелестом, листвы, ароматом цветов и пряных трав.
+                  p.services__title(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".2s") Озеленение и благоустройство участка
+                  p.services__sub-title(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".3s") Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками, шелестом, листвы, ароматом цветов и пряных трав.
               .swiper-slide
-                .services__image
+                .services__image(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".1s")
                   img(src="img/service-2.png", alt="")
                 .services__info
-                  p.services__title Ландшафтное проектирование
-                  p.services__sub-title Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками, шелестом, листвы, ароматом цветов и пряных трав.
+                  p.services__title(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".2s") Ландшафтное проектирование
+                  p.services__sub-title(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".3s") Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками, шелестом, листвы, ароматом цветов и пряных трав.
               .swiper-slide
-                .services__image
+                .services__image(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".1s")
                   img(src="img/service-3.png", alt="")
                 .services__info
-                  p.services__title Ландшафтное строительство
-                  p.services__sub-title Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками, шелестом, листвы, ароматом цветов и пряных трав.
+                  p.services__title(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".2s") Ландшафтное строительство
+                  p.services__sub-title(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".3s") Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками, шелестом, листвы, ароматом цветов и пряных трав.
               .swiper-slide
-                .services__image
+                .services__image(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".1s")
                   img(src="img/service-4.png", alt="")
                 .services__info
-                  p.services__title Система освещения
-                  p.services__sub-title Практичная подсветка дорожек, лестниц  и подъездов, световое декорирование ландшафтных элементов и растений.
+                  p.services__title(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".2s") Система освещения
+                  p.services__sub-title(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".3s") Практичная подсветка дорожек, лестниц  и подъездов, световое декорирование ландшафтных элементов и растений.
               .swiper-slide
-                .services__image
+                .services__image(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".1s")
                   img(src="img/service-5.png", alt="")
                 .services__info
-                  p.services__title Уход за участком
-                  p.services__sub-title Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками, шелестом, листвы, ароматом цветов и пряных трав.
+                  p.services__title(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".2s") Уход за участком
+                  p.services__sub-title(data-swiper-animation="fadeInLeft" data-duration=".5s" data-delay=".3s") Создадим комфортное и уютное пространство. Наполним ваш сад жизнью, яркими красками, шелестом, листвы, ароматом цветов и пряных трав.
             //- Add Pagination
             .swiper-pagination
 
@@ -175,13 +175,13 @@ block content
     .stages
       .container
         h2 Этапы работы
-        //- .stages__scroll
-        //-   .stages__points
-        //-     a.stages__points-link.is-active(href="#") Озеленение
-        //-     a.stages__points-link(href="#") Проектирование
-        //-     a.stages__points-link(href="#") Строительство
-        //-     a.stages__points-link(href="#") Освещение
-        //-     a.stages__points-link(href="#") Уход
+        .stages__scroll
+          .slider-nav(js-stages-nav)
+            a.slider-nav__link.is-active(data-target="1") Озеленение
+            a.slider-nav__link(data-target="2") Проектирование
+            a.slider-nav__link(data-target="3") Строительство
+            a.slider-nav__link(data-target="4") Освещение
+            a.slider-nav__link(data-target="5") Уход
         .stages__slider
           .swiper-container(js-slider-stages)
             .swiper-wrapper
@@ -381,9 +381,9 @@ block content
   // END SECTION :: team
 
   // BEGIN SECTION :: contacts
-  section#section-contacts
+  section
     .contacts
-      .container
+      .container#section-contacts
         img.contacts__image(src="img/footer-1.jpg", alt="")
         img.contacts__image(src="img/footer-2.jpg", alt="")
         img.contacts__image(src="img/footer-3.jpg", alt="")
@@ -413,8 +413,9 @@ block content
               a(href="#")
                 svg(xmlns='http://www.w3.org/2000/svg', width='50', height='50')
                   path.st0(d='M39.7 0H10.3C4.6 0 0 4.6 0 10.3v29.5C0 45.4 4.6 50 10.3 50h29.5C45.4 50 50 45.4 50 39.7V10.3C50 4.6 45.4 0 39.7 0zM15 43.1H7.5V18.9H15v24.2zm-3.8-27.5c-2.4 0-4.3-1.9-4.3-4.3s1.9-4.4 4.3-4.4 4.3 2 4.3 4.4c.1 2.4-1.9 4.3-4.3 4.3zm31.9 27.5h-7.5V31.3c0-2.8 0-6.4-3.9-6.4s-4.5 3.1-4.5 6.2V43h-7.5V18.9h7.2v3.3h.1c1-1.9 3.4-3.9 7.1-3.9 7.6 0 9 5 9 11.5v13.3z')
-          .contacts__right
-            form.js-registration-form(action="#" method="#")
+          
+          .contacts__right#section-lead
+            form.js-lead-form(action="#" method="#")
               .input-container
                 label(for="f1") Имя
                 input(type="text" id="f1" name="name" placeholder="Введите ваше имя")

@@ -78,21 +78,31 @@
       // padding-top: 55px
       // padding-bottom: 55px
     .swiper-slide
-      height: auto !important
-      max-width: 250px
+      // height: auto !important
+      // max-width: 250px
       // max-height: 250px
-      display: flex
-      align-items: center
-      justify-content: center
+      // display: flex
+      // align-items: center
+      // justify-content: center
       min-height: 0
+      font-size: 0
       &.is-active
         img
           filter: none
       img
-        width: 100%
-        height: auto
         filter: grayscale(100) brightness(1.2) blur(0.4px)
         transition: all $transitionSpeed $ease
+  &__preview-image
+    position: relative
+    overflow: hidden
+    // keep aspect ration of 1:1
+    padding-bottom: 100%
+    img
+      position: absolute
+      top: 0
+      left: 0
+      max-width: 100%
+      max-height: 100%
 
 +r($hd)
   .team
