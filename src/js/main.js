@@ -478,6 +478,7 @@ $(document).ready(function() {
       $(form)
         .find("input")
         .val("");
+      // initSubmit();
       // $.ajax({
       //   type: "POST",
       //   url: $(form).attr("action"),

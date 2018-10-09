@@ -211,6 +211,8 @@
 +r($tablet)
   .stages
     padding: 40px 0
+    .container
+      position: relative
     &__slider
       margin-top: 45px
     &__info
@@ -244,8 +246,10 @@
     &__scroll
       overflow: hidden
       position: absolute
-      top: 0
-      height: 30px
+      z-index: 2
+      top: 35px
+      height: auto
+      max-width: 89%
     .swiper-pagination
       overflow-x: scroll
       display: flex
