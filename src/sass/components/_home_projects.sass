@@ -28,20 +28,27 @@
       z-index: 2
     &:hover
       .projects__image
+        filter: none
         img
-          filter: none
+          // filter: none
       .projects__image-hover
         opacity: 1
   &__image
     overflow: hidden
     position: relative
+    padding-bottom: 66.6%
+    font-size: 0
+    filter: grayscale(100) brightness(1.2) blur(0.4px)
+    will-change: filter
+    transition: filter .25s linear
     img
+      position: absolute
+      top: 0
+      left: 0
       height: auto
       width: 100%
-      margin-bottom: -10px
-      filter: grayscale(100) brightness(1.2) blur(0.4px)
-      will-change: filter
-      transition: filter $transitionSpeed $ease
+      // margin-bottom: -10px
+      transform: translate3d(0,0,0)
   &__image-hover
     position: absolute
     width: 100%
