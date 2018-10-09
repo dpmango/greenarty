@@ -174,6 +174,8 @@ $(document).ready(function() {
       //     return '<span class="' + className + '">' + (index + 1) + "</span>";
       //   }
       // },
+      draggable: false,
+      simulateTouch: false,
       slidesPerView: 1,
       paginationClickable: true,
       spaceBetween: 30,
