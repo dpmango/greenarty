@@ -25,16 +25,92 @@ $(document).ready(function() {
     initPopups();
     initSliders();
     initParallax();
-
-    // initMasks();
-    initAutogrow();
     initValidations();
-
     initScrollMonitor();
   }
 
   // this is a master function which should have all functionality
   pageReady();
+
+
+  //////////
+  // COMMON
+  //////////
+
+  function initaos() {
+    AOS.init();
+  }
+
+  function legacySupport() {
+    // svg support for laggy browsers
+    svg4everybody();
+
+    // Viewport units buggyfill
+    window.viewportUnitsBuggyfill.init({
+      force: false,
+      refreshDebounceWait: 150,
+      appendToBody: true
+    });
+  }
+
+  // HAMBURGER TOGGLER
+  _document.on("click", "[js-hamburger]", function() {
+    $(this).toggleClass("is-active");
+    $(".header__mobile").toggleClass("is-active");
+    $("body").toggleClass("is-fixed");
+    $("html").toggleClass("is-fixed");
+  });
+
+  _document.on("click", ".header__menu-link, .header__btn", closeMobileMenu);
+
+  function closeMobileMenu() {
+    $("[js-hamburger]").removeClass("is-active");
+    $(".header__mobile").removeClass("is-active");
+  }
+
+  // header scroll
+  _window.on(
+    "scroll",
+    throttle(function() {
+      var scroll = _window.scrollTop();
+      var headerHeight = $(".header").height();
+      var heroHeight = $(".firstscreen").height();
+
+      if (scroll > headerHeight) {
+        $(".header").addClass("is-fixed-start");
+      } else {
+        $(".header").removeClass("is-fixed-start");
+      }
+      if (scroll >= heroHeight - headerHeight / 2) {
+        $(".header").addClass("is-fixed");
+      } else {
+        $(".header").removeClass("is-fixed");
+      }
+    }, 25)
+  );
+
+  // Prevent # behavior
+  _document
+    .on("click", '[href="#"]', function(e) {
+      e.preventDefault();
+    })
+    .on("click", 'a[href^="#section"]', function(e) {
+      // section scroll
+      var el = $(this).attr("href");
+      scrollToSection($(el));
+      return false;
+    });
+
+  function scrollToSection(el) {
+    var headerHeight = $(".header").height();
+    var targetScroll = el.offset().top - headerHeight;
+
+    TweenLite.to(window, 1, {
+      scrollTo: targetScroll,
+      ease: easingSwing
+    });
+  }
+
 
   //////////
   // ANIMATE FOOTER BUTTON
@@ -282,176 +358,6 @@ $(document).ready(function() {
     });
   }
 
-  //////////
-  // COMMON
-  //////////
-
-  function initaos() {
-    AOS.init();
-  }
-
-  function legacySupport() {
-    // svg support for laggy browsers
-    svg4everybody();
-
-    // Viewport units buggyfill
-    window.viewportUnitsBuggyfill.init({
-      force: false,
-      refreshDebounceWait: 150,
-      appendToBody: true
-    });
-  }
-
-  // HAMBURGER TOGGLER
-  _document.on("click", "[js-hamburger]", function() {
-    $(this).toggleClass("is-active");
-    $(".header__mobile").toggleClass("is-active");
-    $("body").toggleClass("is-fixed");
-    $("html").toggleClass("is-fixed");
-  });
-
-  _document.on("click", ".header__menu-link, .header__btn", closeMobileMenu);
-
-  function closeMobileMenu() {
-    $("[js-hamburger]").removeClass("is-active");
-    $(".header__mobile").removeClass("is-active");
-  }
-
-  // header scroll
-  _window.on(
-    "scroll",
-    throttle(function() {
-      var scroll = _window.scrollTop();
-      var headerHeight = $(".header").height();
-      var heroHeight = $(".firstscreen").height();
-
-      if (scroll > headerHeight) {
-        $(".header").addClass("is-fixed-start");
-      } else {
-        $(".header").removeClass("is-fixed-start");
-      }
-      if (scroll >= heroHeight - headerHeight / 2) {
-        $(".header").addClass("is-fixed");
-      } else {
-        $(".header").removeClass("is-fixed");
-      }
-    }, 25)
-  );
-
-  // Prevent # behavior
-  _document
-    .on("click", '[href="#"]', function(e) {
-      e.preventDefault();
-    })
-    .on("click", 'a[href^="#section"]', function(e) {
-      // section scroll
-      var el = $(this).attr("href");
-      scrollToSection($(el));
-      return false;
-    });
-
-  function scrollToSection(el) {
-    var headerHeight = $(".header").height();
-    var targetScroll = el.offset().top - headerHeight;
-
-    TweenLite.to(window, 1, {
-      scrollTo: targetScroll,
-      ease: easingSwing
-    });
-  }
-
-  ////////////////////
-  // CHANGE TITLE LOGIN PAGE
-  ////////////////////
-  _document.on("click", "[js-shipper-button]", function() {
-    $(".carrier-title").hide();
-    $(".shipper-title").fadeIn();
-  });
-
-  _document.on("click", "[js-carrier-button]", function() {
-    $(".shipper-title").hide();
-    $(".carrier-title").fadeIn();
-  });
-
-  ////////////////////
-  // CHANGE TITLE LOGIN PAGE
-  ////////////////////
-
-  ////////////////////
-  // CHANGE MAPS
-  ////////////////////
-
-  _document.on("click", "[js-open-lit]", function() {
-    $(".contacts__map").removeClass("is-active");
-    $(".lit-map").addClass("is-active");
-  });
-
-  _document.on("click", "[js-open-usa]", function() {
-    $(".contacts__map").removeClass("is-active");
-    $(".usa-map").addClass("is-active");
-  });
-
-  ////////////////////
-  // CHANGE MAPS
-  ////////////////////
-
-  ////////////////////
-  // SHOW PASSWORD TOGGLE
-  ////////////////////
-
-  _document.on("click", "[js-show-pass]", function(e) {
-    e.preventDefault();
-    $(this).toggleClass("show-pass");
-    var x = document.getElementById("l2");
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
-    }
-  });
-
-  ////////////////////
-  // SHOW PASSWORD TOGGLE
-  ////////////////////
-
-  ////////////////////
-  // FORM TOGGLER
-  ////////////////////
-
-  _document.on("click", "[open-form]", function() {
-    $(".form-block-hidden").slideToggle();
-  });
-
-  _document.on("click", "[close-form]", function() {
-    $(".form-block-hidden").slideToggle();
-  });
-
-  //////////
-  // SLIDERS
-  //////////
-
-  //////////
-  // MODALS
-  //////////
-
-  ////////////
-  // UI
-  ////////////
-  function initAutogrow() {
-    if ($("[js-autogrow]").length > 0) {
-      $("[js-autogrow]").each(function(i, el) {
-        new Autogrow(el);
-      });
-    }
-  }
-
-  // Masked input
-  function initMasks() {
-    // $("[js-dateMask]").mask("99.99.99", { placeholder: "ДД.ММ.ГГ" });
-    // $("input[type='tel']").mask("(000) 000-0000", {
-    //   placeholder: "+7 (___) ___-____"
-    // });
-  }
 
   ////////////////
   // FORM VALIDATIONS
@@ -500,11 +406,8 @@ $(document).ready(function() {
       // });
     };
 
-    ////////
-    // FORMS
-
     /////////////////////
-    // REGISTRATION FORM
+    // LEAD FORM
     ////////////////////
 
     function emailIsValid(value) {
@@ -554,41 +457,6 @@ $(document).ready(function() {
       }
     });
   }
-
-  // //////////
-  // // PAGINATION
-  // //////////
-  // var paginationAnchors, sections;
-
-  // function getPaginationSections() {
-  //   paginationAnchors = $(".header__menu .header__menu-link");
-  //   sections = $(".page__content [data-section]");
-  // }
-
-  // function pagination() {
-  //   // Cache selectors
-  //   var headerHeight = $(".header").height();
-  //   var vScroll = _window.scrollTop();
-
-  //   if (sections.length === 0) {
-  //     paginationAnchors.removeClass("is-active");
-  //     return false;
-  //   }
-
-  //   // Get id of current scroll item
-  //   var cur = sections.map(function() {
-  //     if ($(this).offset().top <= vScroll + headerHeight / 0.99) return this;
-  //   });
-  //   // Get current element
-  //   cur = $(cur[cur.length - 1]);
-  //   var id = cur && cur.length ? cur.data("section") : "1";
-
-  //   // Set/remove active class
-  //   paginationAnchors
-  //     .removeClass("is-active")
-  //     .filter("[data-section='" + id + "']")
-  //     .addClass("is-active");
-  // }
 
   ////////////
   // REVEAL FUNCTIONS
