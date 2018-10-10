@@ -32,7 +32,6 @@ $(document).ready(function() {
   // this is a master function which should have all functionality
   pageReady();
 
-
   //////////
   // COMMON
   //////////
@@ -81,7 +80,7 @@ $(document).ready(function() {
       } else {
         $(".header").removeClass("is-fixed-start");
       }
-      if (scroll >= heroHeight - headerHeight / 2) {
+      if (scroll >= heroHeight - headerHeight / 1) {
         $(".header").addClass("is-fixed");
       } else {
         $(".header").removeClass("is-fixed");
@@ -98,6 +97,8 @@ $(document).ready(function() {
       // section scroll
       var el = $(this).attr("href");
       scrollToSection($(el));
+      $("body").removeClass("is-fixed");
+      $("html").removeClass("is-fixed");
       return false;
     });
 
@@ -110,7 +111,6 @@ $(document).ready(function() {
       ease: easingSwing
     });
   }
-
 
   //////////
   // ANIMATE FOOTER BUTTON
@@ -357,7 +357,6 @@ $(document).ready(function() {
       var parallax = new Parallax(scene);
     });
   }
-
 
   ////////////////
   // FORM VALIDATIONS

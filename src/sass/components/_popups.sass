@@ -4,7 +4,7 @@
   text-align: left
   margin: 0 auto
   padding: 100px
-  max-height: 98vh
+  // max-height: 98vh
   position: relative
   &__info
     height: auto
@@ -19,7 +19,7 @@
     color: transparent
     opacity: 1
     background: url(../img/close.svg) center center no-repeat
-    background-size: contain
+    background-size: cover
     right: 50px
     top: 50px
   &__title
@@ -77,6 +77,10 @@
     p
       font-size: 14px
       margin-top: 14px
+      &.dot
+        &:before
+          line-height: 0
+          top: 8px
 
 
 .mfp-zoom-in

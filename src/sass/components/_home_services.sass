@@ -10,6 +10,11 @@
     display: flex
     align-items: center
     justify-content: space-between
+    &:nth-of-type(2)
+      .services__image
+        img
+          &.image-letter
+            width: 100%
     &:nth-of-type(4)
       img
         &.image-obj
@@ -29,7 +34,8 @@
     margin-left: 5%
     img
       &.image-letter
-        max-width: 550px
+        // max-width: 550px
+        max-height: 515px
         width: 90%
         height: auto
       &.image-obj
@@ -154,6 +160,12 @@
       margin-top: 40px
     .swiper-slide
       flex-wrap: wrap
+      &:nth-of-type(2)
+        .services__image
+          img
+            max-width: 255px
+            // &.image-letter
+            //   max-width: 255px !important
     &__image
       width: 70%
       max-width: 250px
