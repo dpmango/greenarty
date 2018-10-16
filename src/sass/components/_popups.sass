@@ -7,9 +7,14 @@
   padding-right: 50px
   // max-height: 98vh
   position: relative
+  max-height: calc(100vh - 10px)
+  display: flex
+  flex-direction: column
+  overflow: hidden
   &__info
+    flex: 1 1 auto
     height: auto
-    max-height: 600px
+    // max-height: 600px
     overflow-y: scroll
     margin-top: 30px
     // padding-right: 15px
@@ -24,6 +29,7 @@
     right: 50px
     top: 50px
   &__title
+    flex: 0 0 auto
     font-size: 48px
     padding-right: 50px
     text-align: left

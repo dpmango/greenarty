@@ -105,9 +105,10 @@ $(document).ready(function() {
   function scrollToSection(el) {
     var headerHeight = $(".header").height();
     var targetScroll = el.offset().top - headerHeight;
+    // document.scrollingElement || document.documentElement
 
     TweenLite.to(window, 1, {
-      scrollTo: targetScroll,
+      scrollTo: {y:targetScroll, autoKill:false},
       ease: easingSwing
     });
   }
