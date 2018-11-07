@@ -24,7 +24,7 @@ $(document).ready(function() {
   function pageReady() {
     initPopups();
     initSliders();
-    initParallax();
+    // initParallax();
     initValidations();
     initScrollMonitor();
   }
